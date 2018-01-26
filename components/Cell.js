@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Util from '../helpers/Util';
+// import Util from '../helpers/Util';
+
+import { StyleSheet, Text, View } from 'react-native';
 
 export default class Cell extends Component {
 
@@ -7,10 +9,10 @@ export default class Cell extends Component {
     super(props)
   
     this.state = {
-      correctValue: this.props.data.value,
-      row: this.props.data.row,
-      col: this.props.data.col,
-      flag: false
+      // correctValue: this.props.data.value,
+      // row: this.props.data.row,
+      // col: this.props.data.col,
+      // flag: false
     }
   }
 
@@ -44,27 +46,29 @@ export default class Cell extends Component {
 
   render() {
 
-    let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
+    // let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
 
     return (
-      <td 
-        className={
-          "cell-block " + 
-          (error ? 'error ' : '') + 
-          (this.props.data.activated ? '' : 'prefilled ') +
-          (this.state.flag ? 'flag' : '' )
-        }>
-        <input
-          className="cell-input" 
-          type="text" 
-          value={this.props.data.value} 
-          maxLength="1"
-          disabled={!this.props.data.activated}
-          onChange={e => this.onChange(e)} 
-          onDoubleClick={e => this.onDoubleClick(e)} />
-      </td>
+      <View style={styles.cell} >
+        <Text style={styles.cellText} >1</Text>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  cell: {
+    width: 50,
+    height: 50,
+    borderWidth: 0.5,
+    borderColor: '#3d3d3d',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  cellText: {
+    fontSize: 24
+  }
+});
+
 
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import Sudoku from './Sudoku';
 // import Util from '../helpers/Util';
+import Cell from './Cell';
 
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -34,7 +35,7 @@ export default class Index extends Component {
 
     return (
       <View>
-        <Text>index.js</Text>
+        <Cell />
       </View>
     );
   }
