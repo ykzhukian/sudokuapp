@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import Util from '../helpers/Util';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
 export default class Cell extends Component {
 
@@ -14,6 +14,10 @@ export default class Cell extends Component {
       // col: this.props.data.col,
       // flag: false
     }
+  }
+
+  onClick(e) {
+    console.log('input');
   }
 
   onChange(event) {
@@ -49,9 +53,9 @@ export default class Cell extends Component {
     // let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
 
     return (
-      <View style={styles.cell} >
+      <TouchableHighlight style={styles.cell} onPress={(e) => this.onClick(e)}>
         <Text style={styles.cellText} >1</Text>
-      </View>
+      </TouchableHighlight>
     );
   }
 }

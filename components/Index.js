@@ -36,6 +36,9 @@ export default class Index extends Component {
     return (
       <View>
         <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
       </View>
     );
   }
