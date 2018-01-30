@@ -1,5 +1,4 @@
-import $ from 'jquery';
-import 'jquery-ui';
+// import $ from 'jquery';
 
 const SEED_SUDOKU = [
 	[8, 7, 4, 6, 3, 1, 5, 9, 2],

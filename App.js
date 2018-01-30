@@ -5,19 +5,7 @@ import Index from './components/Index';
 
 export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container} >
-        <Index />
-      </View>
-    );
+    return (<Index />);
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

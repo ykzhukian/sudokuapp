@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-// import Sudoku from './Sudoku';
-// import Util from '../helpers/Util';
-import Cell from './Cell';
+import Sudoku from './Sudoku';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 
 
 export default class Index extends Component {
@@ -34,13 +32,23 @@ export default class Index extends Component {
   render() {
 
     return (
-      <View>
-        <Cell />
-        <Cell />
-        <Cell />
-        <Cell />
+      <View style={styles.container}>
+        <Sudoku prefilled={45} />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    flexDirection: 'column',
+    width: '100%',
+    paddingTop: 20
+  },
+});
 
