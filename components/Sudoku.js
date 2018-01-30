@@ -188,12 +188,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     padding: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center'
   },
   wrapper: {
     height: 315,
     width: '100%',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: 50
   },
   row: {
     width: 315,
