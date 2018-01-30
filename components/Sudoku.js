@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert } from 'react-native';
 
 import Util from '../helpers/Util';
 
@@ -49,6 +49,34 @@ export default class Sudoku extends Component {
       initial: true,
       saved: []
     });
+  }
+
+  clear() {
+    Alert.alert(
+        'Warning',
+        'Cannot recover, sure?',
+        [
+            {text: 'Sure', onPress: () => {
+              let currentSudoku = this.state.currentSudoku;
+              currentSudoku.forEach((row, rowIndex) => {
+                row.forEach((value, index) => {
+                  if (
+                      !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) &&
+                      !Util.checkDuplicate(this.state.flags, [rowIndex, index])
+                    ) {
+                    currentSudoku[rowIndex][index] = ''; 
+                  }
+                })
+              });
+              let errors = Util.verifyValue(currentSudoku);
+              this.setState({
+                currentSudoku: currentSudoku,
+                errors: errors
+              });
+            }},
+            {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+        ]
+    )
   }
 
   addFlag(position) {
@@ -145,6 +173,10 @@ export default class Sudoku extends Component {
     return (
       <View style={styles.container} >
         <View style={styles.wrapper}>{sudokuBlock}</View>
+        <TouchableWithoutFeedback
+          style={styles.clear}
+          onPress={() => this.clear()}
+        ><View><Text>Clear</Text></View></TouchableWithoutFeedback>
         {inputModal}
       </View>
     );
@@ -168,6 +200,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  clear: {
+    marginTop: 50
   }
 });
 
