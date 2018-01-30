@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert } from 'react-native';
+import { Font } from 'expo';
 
 import Util from '../helpers/Util';
 
@@ -15,6 +16,15 @@ export default class Cell extends Component {
       col: this.props.data.col,
       flag: this.props.data.flag
     }
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'Dosis': require('../assets/fonts/Dosis-Regular.ttf'),
+      'Dosis-bold': require('../assets/fonts/Dosis-Bold.ttf'),
+    });
+    //Setting the state to true when font is loaded.
+    this.setState({ fontLoaded: true });
   }
 
   onPress(e) {
@@ -69,11 +79,18 @@ export default class Cell extends Component {
             (this.props.data.flag ? styles.flag : []),
             (this.props.data.selected ? styles.selected : []),
           ]} >
-          <Text style={[
-          styles.cellText, 
-          (!this.props.data.activated? styles.activated : []),
-          (error || this.props.data.flag ? styles.highlistText : []),
-        ]} >{this.props.data.value}</Text>
+          
+          {
+            this.state.fontLoaded ? (
+              <Text style={[
+                styles.cellText, 
+                (!this.props.data.activated? styles.activated : []),
+                (error || this.props.data.flag ? styles.highlistText : []),
+              ]} >{this.props.data.value}</Text>
+            ) : null
+          }
+
+          
         </View>
       </TouchableWithoutFeedback>
     );
@@ -91,7 +108,8 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   activated: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: 'Dosis-bold'
   },
   flag: {
     backgroundColor: '#42bcf4'
@@ -105,7 +123,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cellText: {
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: 'Dosis'
   }
 });
 

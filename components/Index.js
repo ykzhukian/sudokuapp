@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sudoku from './Sudoku';
+import { Font } from 'expo';
 
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 
