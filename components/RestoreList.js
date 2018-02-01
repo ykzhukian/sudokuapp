@@ -21,7 +21,7 @@ export default class RestoreList extends Component {
         <View>
           <Text>{index + 1}</Text>
         </View>
-        <Restore delete={() => this.props.delete(index)} restore={this.props.restore} sudokuIndex={index + ''} sudoku={store.sudoku} />
+        <Restore delete={() => this.props.delete(store.id)} restore={this.props.restore} sudokuIndex={index + ''} sudoku={store.sudoku} />
       </View>
     ))
     :

@@ -75,7 +75,7 @@ export default class Sudoku extends Component {
     });
 
     let toBeSaved = {
-      time: Date.now(),
+      id: Date.now(),
       sudoku: toBeSavedSudoku
     }
     saved.push(toBeSaved);
@@ -84,16 +84,23 @@ export default class Sudoku extends Component {
     })
   }
 
-  delete(index) {
-    console.log(index);
-    let saved = this.state.saved.splice(index, 1)
-    this.setState({
-      saved: saved
-    })
+  delete(id) {
+    Alert.alert(
+        'Deleting',
+        'Cannot recover, sure?',
+        [
+            {text: 'Go on', onPress: () => {
+              var saved = this.state.saved.filter(function(el) { return el.id != id; }); 
+              this.setState({
+                saved: saved
+              })
+            }},
+            {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+        ]
+    )
   }
 
   restore(sudoku) {
-
     let toBeRestored = sudoku.slice();
     sudoku.forEach((row, rowIndex) => {
       toBeRestored[rowIndex] = sudoku[rowIndex].slice();
