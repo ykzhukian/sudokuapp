@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     start: 0,
     width: '100%',
+    zIndex: 9999
   },
   wrapper: {
     flex: 1,

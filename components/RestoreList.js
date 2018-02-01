@@ -17,15 +17,15 @@ export default class RestoreList extends Component {
     const restoreList = stores.length
     ?
     stores.map((store, index) => (
-      <View key={index} className="restore-wrapper">
-        <View className="restore-time">
+      <View key={index} >
+        <View>
           <Text>{index + 1}</Text>
         </View>
-        <Restore restore={this.props.restore} sudokuIndex={index + ''} sudoku={store.sudoku} />
+        <Restore delete={() => this.props.delete(index)} restore={this.props.restore} sudokuIndex={index + ''} sudoku={store.sudoku} />
       </View>
     ))
     :
-    (<View className="restore-no"><Text>No Saved Progress.</Text></View>);
+    (<View><Text>No Saved Progress.</Text></View>);
 
     return (
       <ScrollView 

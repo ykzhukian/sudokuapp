@@ -23,6 +23,10 @@ export default class Restore extends Component {
     )
   }
 
+  delete() {
+    console.log('check!')
+  }
+
   render() {
 
     const sudoku = this.props.sudoku.map((row, rowIndex) => (
@@ -35,6 +39,7 @@ export default class Restore extends Component {
 
     return (
       <TouchableWithoutFeedback 
+        onLongPress={() => this.props.delete()}
         onPress={(e) => this.onClick(e)} >
         <View style={styles.item} >{sudoku}</View>
       </TouchableWithoutFeedback>

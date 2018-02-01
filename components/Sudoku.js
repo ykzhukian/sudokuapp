@@ -84,6 +84,14 @@ export default class Sudoku extends Component {
     })
   }
 
+  delete(index) {
+    console.log(index);
+    let saved = this.state.saved.splice(index, 1)
+    this.setState({
+      saved: saved
+    })
+  }
+
   restore(sudoku) {
 
     let toBeRestored = sudoku.slice();
@@ -239,7 +247,7 @@ export default class Sudoku extends Component {
           <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 25)} ><View><Text style={this.props.prefilled === 25 ? styles.active : ''}>Hard</Text></View></TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 17)} ><View><Text style={this.props.prefilled === 17 ? styles.active : ''}>Challenging</Text></View></TouchableWithoutFeedback>
         </View>
-        <RestoreList stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
+        <RestoreList delete={(index) => this.delete(index)} stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
       </View>
     );
   }
