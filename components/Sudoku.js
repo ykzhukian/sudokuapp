@@ -62,7 +62,13 @@ export default class Sudoku extends Component {
     let saved = this.state.saved;
 
     if (saved.length > 8) {
-      
+      Alert.alert(
+        'Sorry',
+        'Can only store 9 progress.',
+        [
+            {text: 'OK', onPress: () => console.log('Cancel Pressed')},
+        ]
+    )
       return;
     }
 
