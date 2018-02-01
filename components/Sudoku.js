@@ -5,6 +5,7 @@ import Util from '../helpers/Util';
 
 import Cell from './Cell';
 import InputModal from './InputModal';
+import RestoreList from './RestoreList';
 
 export default class Sudoku extends Component {
 
@@ -24,6 +25,12 @@ export default class Sudoku extends Component {
 
   componentWillMount() {
     this.initialiseSudoku(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.finished) {
+      this.initialiseSudoku(nextProps);
+    }
   }
 
   initialiseSudoku(props) {
@@ -48,6 +55,51 @@ export default class Sudoku extends Component {
       initial: true,
       saved: []
     });
+  }
+
+  save() {
+    let currentSudoku = this.state.currentSudoku;
+    let saved = this.state.saved;
+
+    if (saved.length > 8) {
+      
+      return;
+    }
+
+    let toBeSavedSudoku = currentSudoku.slice();
+    currentSudoku.forEach((row, rowIndex) => {
+      toBeSavedSudoku[rowIndex] = currentSudoku[rowIndex].slice();
+      row.forEach((value, index) => {
+        toBeSavedSudoku[rowIndex][index] = value;
+      })
+    });
+
+    let toBeSaved = {
+      time: Date.now(),
+      sudoku: toBeSavedSudoku
+    }
+    saved.push(toBeSaved);
+    this.setState({
+      saved: saved
+    })
+  }
+
+  restore(sudoku) {
+
+    let toBeRestored = sudoku.slice();
+    sudoku.forEach((row, rowIndex) => {
+      toBeRestored[rowIndex] = sudoku[rowIndex].slice();
+      row.forEach((value, index) => {
+        toBeRestored[rowIndex][index] = value;
+      })
+    });
+
+    let errors = Util.verifyValue(toBeRestored);
+
+    this.setState({
+      currentSudoku: toBeRestored,
+      errors: errors
+    })
   }
 
   clear() {
@@ -175,9 +227,19 @@ export default class Sudoku extends Component {
         <TouchableWithoutFeedback
           style={styles.clear}
           onPress={() => this.clear()}
-        ><View><Text>Clear</Text></View></TouchableWithoutFeedback>
+        ><View><Text>Clear (except flagged cell)</Text></View></TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          style={styles.clear}
+          onPress={() => this.save()}
+        ><View><Text>Save Current Progress</Text></View></TouchableWithoutFeedback>
         {inputModal}
-
+        <View>
+          <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 45)} ><View><Text style={this.props.prefilled === 45 ? styles.active : ''}>Beginner</Text></View></TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 35)} ><View><Text style={this.props.prefilled === 35 ? styles.active : ''}>Normal</Text></View></TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 25)} ><View><Text style={this.props.prefilled === 25 ? styles.active : ''}>Hard</Text></View></TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 17)} ><View><Text style={this.props.prefilled === 17 ? styles.active : ''}>Challenging</Text></View></TouchableWithoutFeedback>
+        </View>
+        <RestoreList stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
       </View>
     );
   }
@@ -206,6 +268,9 @@ const styles = StyleSheet.create({
   },
   clear: {
     marginTop: 50
+  },
+  active: {
+    textDecorationLine: 'underline'
   }
 });
 

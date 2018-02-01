@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sudoku from './Sudoku';
 import { Font } from 'expo';
 
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Alert } from 'react-native';
 
 
 export default class Index extends Component {
@@ -16,12 +16,19 @@ export default class Index extends Component {
   }
 
   changeDifficulty(event, value) {
-    Util.confirm('It will lose the progress and start a new game.', () => {
-      this.setState({
-        difficulty: value,
-        win: false
-      })
-    })
+    Alert.alert(
+        'Warning',
+        'It will lose the progress and start a new game.',
+        [
+          {text: 'Go on', onPress: () => {
+            this.setState({
+              difficulty: value,
+              win: false
+            })
+          }},
+          {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+        ]
+    )
   }
 
   win() {
@@ -34,7 +41,7 @@ export default class Index extends Component {
 
     return (
       <View style={styles.container}>
-        <Sudoku prefilled={45} />
+        <Sudoku prefilled={this.state.difficulty} changeDifficulty={(event, value) => this.changeDifficulty(event, value)}/>
       </View>
     );
   }

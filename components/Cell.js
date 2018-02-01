@@ -90,7 +90,6 @@ export default class Cell extends Component {
             ) : null
           }
 
-          
         </View>
       </TouchableWithoutFeedback>
     );
