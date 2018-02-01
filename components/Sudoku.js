@@ -14,7 +14,6 @@ export default class Sudoku extends Component {
     this.state = {
      inputModal: false,
      selected: [],
-     cellVal: 9,
      sudoku: '',
      currentSudoku: '',
      prefilledArr: '',
@@ -178,6 +177,7 @@ export default class Sudoku extends Component {
           onPress={() => this.clear()}
         ><View><Text>Clear</Text></View></TouchableWithoutFeedback>
         {inputModal}
+
       </View>
     );
   }

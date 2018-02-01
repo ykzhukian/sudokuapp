@@ -14,7 +14,7 @@ export default class Cell extends Component {
     this.state = {
       row: this.props.data.row,
       col: this.props.data.col,
-      flag: this.props.data.flag
+      flag: this.props.data.flag,
     }
   }
 
@@ -99,7 +99,8 @@ export default class Cell extends Component {
 
 const styles = StyleSheet.create({
   selected: {
-    backgroundColor: '#e2e2e2'
+    borderWidth: 1,
+    borderColor: 'orange',
   },
   error: {
     backgroundColor: '#fc8585',
