@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sudoku from './Sudoku';
 import { Font } from 'expo';
 
-import { StyleSheet, Text, View, StatusBar, Alert } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Alert, TouchableWithoutFeedback } from 'react-native';
 
 
 export default class Index extends Component {
@@ -10,19 +10,26 @@ export default class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      difficulty: 45,
+      difficulty: 0,
       win: false
     };
   }
 
-  changeDifficulty(event, value) {
+  selectDifficulty(event, value) {
+    this.setState({
+      difficulty: value,
+      win: false
+    })
+  }
+
+  cancelGame() {
     Alert.alert(
         'Warning',
         'It will lose the progress and start a new game.',
         [
           {text: 'Go on', onPress: () => {
             this.setState({
-              difficulty: value,
+              difficulty: 0,
               win: false
             })
           }},
@@ -39,9 +46,23 @@ export default class Index extends Component {
 
   render() {
 
+    const content = this.state.difficulty === 0 
+    ?
+    (<View>
+      <Text>Choose</Text>
+        <TouchableWithoutFeedback onPress={(e) => this.selectDifficulty(e, 45)} ><View><Text>Beginner</Text></View></TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={(e) => this.selectDifficulty(e, 35)} ><View><Text>Normal</Text></View></TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={(e) => this.selectDifficulty(e, 25)} ><View><Text>Hard</Text></View></TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={(e) => this.selectDifficulty(e, 17)} ><View><Text>Challenging</Text></View></TouchableWithoutFeedback>
+      </View>
+    )
+    :
+    (<Sudoku prefilled={this.state.difficulty} cancelGame={() => this.cancelGame()} />)
+    ;
+
     return (
       <View style={styles.container}>
-        <Sudoku prefilled={this.state.difficulty} changeDifficulty={(event, value) => this.changeDifficulty(event, value)}/>
+        {content}
       </View>
     );
   }

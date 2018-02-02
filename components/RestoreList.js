@@ -29,7 +29,7 @@ export default class RestoreList extends Component {
 
     return (
       <ScrollView 
-        contentContainerStyle={styles.restoreList}
+        style={styles.restoreList}
         horizontal={true} >
         {restoreList}
       </ScrollView>
@@ -39,7 +39,8 @@ export default class RestoreList extends Component {
 
 const styles = StyleSheet.create({
   restoreList: {
-
+    height: 100,
+    flexGrow: 0
   }
 })
 

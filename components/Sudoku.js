@@ -244,23 +244,25 @@ export default class Sudoku extends Component {
 
     return (
       <View style={styles.container} >
-        <View style={styles.wrapper}>{sudokuBlock}</View>
+
         <TouchableWithoutFeedback
           style={styles.clear}
           onPress={() => this.clear()}
-        ><View><Text>Clear (except flagged cell)</Text></View></TouchableWithoutFeedback>
+        ><View><Text>Clear</Text></View></TouchableWithoutFeedback>
+
+        <TouchableWithoutFeedback
+          style={styles.clear}
+          onPress={() => this.props.cancelGame()}
+        ><View><Text>Cancel</Text></View></TouchableWithoutFeedback>
+        
         <TouchableWithoutFeedback
           style={styles.clear}
           onPress={() => this.save()}
         ><View><Text>Save Current Progress</Text></View></TouchableWithoutFeedback>
         {inputModal}
-        <View>
-          <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 45)} ><View><Text style={this.props.prefilled === 45 ? styles.active : ''}>Beginner</Text></View></TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 35)} ><View><Text style={this.props.prefilled === 35 ? styles.active : ''}>Normal</Text></View></TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 25)} ><View><Text style={this.props.prefilled === 25 ? styles.active : ''}>Hard</Text></View></TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={(e) => this.props.changeDifficulty(e, 17)} ><View><Text style={this.props.prefilled === 17 ? styles.active : ''}>Challenging</Text></View></TouchableWithoutFeedback>
-        </View>
         <RestoreList delete={(index) => this.delete(index)} stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
+
+        <View style={styles.wrapper}>{sudokuBlock}</View>
       </View>
     );
   }
