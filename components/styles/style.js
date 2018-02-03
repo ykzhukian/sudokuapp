@@ -13,7 +13,7 @@ console.log(colors);
 module.exports = StyleSheet.create({
 
 	container: {
-	  backgroundColor: colors.background,
+	  backgroundColor: colors.colors.background,
 	  height: '100%',
     width: '100%',
     paddingTop: 20

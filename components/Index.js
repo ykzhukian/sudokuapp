@@ -4,7 +4,7 @@ import { Font } from 'expo';
 
 import { StyleSheet, Text, View, StatusBar, Alert, TouchableWithoutFeedback } from 'react-native';
 
-var style = require('./styles/style');
+const style = require('./styles/style');
 
 export default class Index extends Component {
 

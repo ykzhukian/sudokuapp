@@ -5,6 +5,7 @@ import InputModalButton from './InputModalButton';
 
 import Util from '../helpers/Util';
 
+const style = require('./styles/InputModal');
 
 export default class InputModal extends Component {
 
@@ -27,51 +28,25 @@ export default class InputModal extends Component {
     // let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
 
     return (
-      <View style={[styles.container, {width: Util.deviceWidth()}]}>
-        <View style={styles.wrapper}>
+      <View style={[style.container, {width: Util.deviceWidth()}, (this.props.active? [] : style.buttonDisabled)]}>
+        <View style={style.wrapper}>
           <InputModalButton onPress={(val) => this.onPress(val)} value={1}/>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={2}/>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={3}/>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={4}/>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={5}/>
         </View>
 
-        <View style={styles.wrapper}>
-          
+        <View style={style.wrapper}>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={6}/>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={7}/>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={8}/>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={9}/>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={''}/>
         </View>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 0,
-    // start: 0,
-    width: '100%',
-    zIndex: 999,
-    alignItems: 'center',
-    
-  },
-  wrapper: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  cell: {
-    // width: 30,
-    // height: 30,
-    flex: 1,
-    aspectRatio: 1,
-    borderWidth: 1,
-    borderColor: '#3d3d3d',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 5
-  },
-  cellText: {
-    fontSize: 14
-  }
-});
-
 
 

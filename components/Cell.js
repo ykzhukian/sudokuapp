@@ -4,6 +4,8 @@ import { Font } from 'expo';
 
 import Util from '../helpers/Util';
 
+const style = require('./styles/Cell');
+
 const DOUBLE_PRESS_DELAY = 300;
 
 export default class Cell extends Component {
@@ -15,13 +17,13 @@ export default class Cell extends Component {
       row: this.props.data.row,
       col: this.props.data.col,
       flag: this.props.data.flag,
+      axis: Util.checkAxis({row: this.props.data.row, col: this.props.data.col})
     }
   }
 
   async componentDidMount() {
     await Font.loadAsync({
-      'Dosis': require('../assets/fonts/Dosis-Regular.ttf'),
-      'Dosis-bold': require('../assets/fonts/Dosis-Bold.ttf'),
+      'Dosis': require('../assets/fonts/Dosis-ExtraBold.ttf'),
     });
     //Setting the state to true when font is loaded.
     this.setState({ fontLoaded: true });
@@ -72,63 +74,32 @@ export default class Cell extends Component {
       <TouchableWithoutFeedback 
         onPress={(e) => this.onPress(e)} 
         disabled={!this.props.data.activated} >
-        <View 
-          style={[
-            styles.cell, 
-            (error ? styles.error : []),
-            (this.props.data.flag ? styles.flag : []),
-            (this.props.data.selected ? styles.selected : []),
-          ]} >
-          
-          {
-            this.state.fontLoaded ? (
-              <Text style={[
-                styles.cellText, 
-                (!this.props.data.activated? styles.activated : []),
-                (error || this.props.data.flag ? styles.highlistText : []),
-              ]} >{this.props.data.value}</Text>
-            ) : null
-          }
-
+        <View style={style.cellWrapper}>
+          <View 
+            style={[
+              style.cell, 
+              (this.state.axis % 2 === 0 ? style.lightCell : []),
+              (error ? style.error : []),
+              (this.props.data.flag ? style.flag : []),
+              (this.props.data.selected ? style.selected : []),
+            ]} >
+            
+            {
+              this.state.fontLoaded ? (
+                <Text style={[
+                  style.cellText, 
+                  (!this.props.data.activated? style.activated : []),
+                  (error || this.props.data.flag ? style.highlistText : []),
+                ]} >{this.props.data.value}</Text>
+              ) : null
+            }
+          </View>
+          <View style={style.cellShadow}></View>
         </View>
       </TouchableWithoutFeedback>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  selected: {
-    borderWidth: 1,
-    borderColor: 'orange',
-  },
-  error: {
-    backgroundColor: '#fc8585',
-  },
-  highlistText: {
-    color: '#fff'
-  },
-  activated: {
-    fontWeight: 'bold',
-    fontFamily: 'Dosis-bold'
-  },
-  flag: {
-    backgroundColor: '#42bcf4'
-  },
-  cell: {
-    // width: 40,
-    // height: 40,
-    flex: 1,
-    margin: 3,
-    borderWidth: 0.5,
-    borderColor: '#3d3d3d',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  cellText: {
-    fontSize: 18,
-    fontFamily: 'Dosis'
-  }
-});
 
 
 
