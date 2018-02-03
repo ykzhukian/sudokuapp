@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
+import Util from '../helpers/Util';
+
+
 export default class InputModal extends Component {
 
 	constructor(props) {
@@ -22,7 +25,7 @@ export default class InputModal extends Component {
     // let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {width: Util.deviceWidth()}]}>
         <View style={styles.wrapper}>
           <TouchableHighlight style={styles.cell} onPress={() => this.onPress(1)}>
             <Text style={styles.cellText}>1</Text>
@@ -68,9 +71,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     bottom: 0,
-    start: 0,
+    // start: 0,
     width: '100%',
-    zIndex: 9999
+    zIndex: 999,
+    alignItems: 'center',
+    
   },
   wrapper: {
     flex: 1,
@@ -79,8 +84,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   cell: {
-    width: 30,
-    height: 30,
+    // width: 30,
+    // height: 30,
+    flex: 1,
+    aspectRatio: 1,
     borderWidth: 1,
     borderColor: '#3d3d3d',
     alignItems: 'center',

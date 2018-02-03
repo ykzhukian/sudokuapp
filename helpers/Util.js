@@ -1,5 +1,7 @@
 // import $ from 'jquery';
 
+import {Dimensions} from 'react-native';
+
 const SEED_SUDOKU = [
 	[8, 7, 4, 6, 3, 1, 5, 9, 2],
 	[5, 9, 6, 7, 2, 8, 4, 3, 1],
@@ -303,7 +305,9 @@ const Mixin = {
     const date = new Date(timestamp);
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
     return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + month[date.getMonth()] + ' ' + date.getDate() ;
-  }
+  },
+
+  deviceWidth() {return Dimensions.get('window').width - 40;}
 
 };
 

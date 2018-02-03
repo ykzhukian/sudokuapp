@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert, Dimensions } from 'react-native';
 
 import Util from '../helpers/Util';
 
@@ -207,14 +207,6 @@ export default class Sudoku extends Component {
 
     // let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
 
-    const inputModal = this.state.inputModal
-    ?
-    (<InputModal 
-      hideInput={() => this.hideInputModal()} 
-      update={(val) => this.update(val)} />)
-    :(<View></View>);
-
-
     const sudokuBlock = this.state.currentSudoku.length
     ?
     this.state.currentSudoku.map((row, rowIndex) => (
@@ -245,24 +237,31 @@ export default class Sudoku extends Component {
     return (
       <View style={styles.container} >
 
-        <TouchableWithoutFeedback
-          style={styles.clear}
-          onPress={() => this.clear()}
-        ><View><Text>Clear</Text></View></TouchableWithoutFeedback>
+        <View style={{flex: 1, flexDirection: 'row', maxHeight: 60}}>
+          <TouchableWithoutFeedback
+            style={styles.clear}
+            onPress={() => this.clear()}
+          ><View><Text>Clear</Text></View></TouchableWithoutFeedback>
 
-        <TouchableWithoutFeedback
-          style={styles.clear}
-          onPress={() => this.props.cancelGame()}
-        ><View><Text>Cancel</Text></View></TouchableWithoutFeedback>
-        
-        <TouchableWithoutFeedback
-          style={styles.clear}
-          onPress={() => this.save()}
-        ><View><Text>Save Current Progress</Text></View></TouchableWithoutFeedback>
-        {inputModal}
-        <RestoreList delete={(index) => this.delete(index)} stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
+          <TouchableWithoutFeedback
+            style={styles.clear}
+            onPress={() => this.props.cancelGame()}
+          ><View><Text>Cancel</Text></View></TouchableWithoutFeedback>
+          
+          <TouchableWithoutFeedback
+            style={styles.clear}
+            onPress={() => this.save()}
+          ><View><Text>Save Current Progress</Text></View></TouchableWithoutFeedback>
+          
+          <RestoreList delete={(index) => this.delete(index)} stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
+        </View>
 
-        <View style={styles.wrapper}>{sudokuBlock}</View>
+        <View style={[styles.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>{sudokuBlock}</View>
+
+        <InputModal 
+          active={this.state.inputModal}
+          hideInput={() => this.hideInputModal()} 
+          update={(val) => this.update(val)} />
       </View>
     );
   }
@@ -272,19 +271,22 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    padding: 10,
+    // padding: 10,
     alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center'
+    // flex: 1,
+    // justifyContent: 'center'
   },
   wrapper: {
-    height: 315,
-    width: '100%',
-    alignItems: 'center',
+    // flex: 1,
+    // justifyContent: 'space-between',
+    // height: 315,
+    // width: '100%',
+    // aspectRatio: 1,
+    // alignItems: 'center',
     marginBottom: 50
   },
   row: {
-    width: 315,
+    width: '100%',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'

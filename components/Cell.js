@@ -29,6 +29,7 @@ export default class Cell extends Component {
 
   onPress(e) {
     const now = new Date().getTime();
+    this.props.showInput({row:this.state.row, col: this.state.col});
 
     if (this.lastImagePress && (now - this.lastImagePress) < DOUBLE_PRESS_DELAY) {
       delete this.lastImagePress;
@@ -38,7 +39,6 @@ export default class Cell extends Component {
 
     } else {
       this.lastImagePress = now;
-      this.props.showInput({row:this.state.row, col: this.state.col});
     }
     
   }
@@ -115,8 +115,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#42bcf4'
   },
   cell: {
-    width: 35,
-    height: 35,
+    // width: 40,
+    // height: 40,
+    flex: 1,
+    margin: 3,
     borderWidth: 0.5,
     borderColor: '#3d3d3d',
     alignItems: 'center',
