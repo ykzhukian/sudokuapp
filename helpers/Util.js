@@ -307,7 +307,8 @@ const Mixin = {
     return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + month[date.getMonth()] + ' ' + date.getDate() ;
   },
 
-  deviceWidth() {return Dimensions.get('window').width - 40;}
+  deviceWidth() {return Dimensions.get('window').width - 40;},
+
 
 };
 

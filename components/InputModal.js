@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
+import InputModalButton from './InputModalButton';
+
 import Util from '../helpers/Util';
 
 
@@ -27,39 +29,11 @@ export default class InputModal extends Component {
     return (
       <View style={[styles.container, {width: Util.deviceWidth()}]}>
         <View style={styles.wrapper}>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress(1)}>
-            <Text style={styles.cellText}>1</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress(2)}>
-            <Text style={styles.cellText}>2</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress(3)}>
-            <Text style={styles.cellText}>3</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress(4)}>
-            <Text style={styles.cellText}>4</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress(5)}>
-            <Text style={styles.cellText}>5</Text>
-          </TouchableHighlight>
+          <InputModalButton onPress={(val) => this.onPress(val)} value={1}/>
         </View>
 
         <View style={styles.wrapper}>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress(6)}>
-            <Text style={styles.cellText}>6</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress(7)}>
-            <Text style={styles.cellText}>7</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress(8)}>
-            <Text style={styles.cellText}>8</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress(9)}>
-            <Text style={styles.cellText}>9</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.cell} onPress={() => this.onPress('')}>
-            <Text style={styles.cellText}>-</Text>
-          </TouchableHighlight>
+          
         </View>
       </View>
     );

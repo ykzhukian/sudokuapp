@@ -4,6 +4,7 @@ import { Font } from 'expo';
 
 import { StyleSheet, Text, View, StatusBar, Alert, TouchableWithoutFeedback } from 'react-native';
 
+var style = require('./styles/style');
 
 export default class Index extends Component {
 
@@ -61,23 +62,11 @@ export default class Index extends Component {
     ;
 
     return (
-      <View style={styles.container}>
+      <View style={style.container}>
         {content}
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    height: '100%',
-    // flexDirection: 'column',
-    width: '100%',
-    paddingTop: 20
-  },
-});
 
