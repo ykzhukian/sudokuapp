@@ -41,10 +41,10 @@ module.exports = StyleSheet.create({
 
   board: {
 		backgroundColor: colors.colors.board,
-		height: '104%',
-		width: '104%',
-		top: '-2%',
-		start: '-2%',
+		height: '108%',
+		width: '106%',
+		top: '-4%',
+		start: '-3%',
 		position: 'absolute',
 		borderRadius: 8,
 		zIndex: 2
@@ -53,11 +53,36 @@ module.exports = StyleSheet.create({
 	boardShadow: {
 		backgroundColor: colors.colors.boardShadow,
 		height: '104%',
-		width: '104%',
-		top: 10,
-		start: '-2%',
+		width: '106%',
+		top: 20,
+		start: '-3%',
 		position: 'absolute',
 		borderRadius: 8,
+	},
+
+	toolBar: {
+		paddingTop: 20,
+		flex: 1, 
+		flexDirection: 'row', 
+		maxHeight: 100,
+		justifyContent: 'space-between',
+	},
+
+	clearWrapper: {
+		backgroundColor: colors.colors.board,
+		height: 50,
+		width: 50,
+		borderRadius: 4,
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+
+	title: {
+		fontFamily: 'Dosis',
+		fontSize: 28,
+		height: 50,
+		lineHeight: 50,
+		color: colors.colors.lightButton
 	}
 
 });

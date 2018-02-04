@@ -64,7 +64,7 @@ module.exports = StyleSheet.create({
     bottom: -3
   },
   cellText: {
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: 'Dosis',
     color: '#fff'
   },

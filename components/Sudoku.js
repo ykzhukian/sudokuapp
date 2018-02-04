@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert, Dimensions, Image } from 'react-native';
 
 import Util from '../helpers/Util';
 
 import Cell from './Cell';
 import InputModal from './InputModal';
 import RestoreList from './RestoreList';
+import { Font } from 'expo';
+
 
 const style = require('./styles/Sudoku');
 
@@ -34,6 +36,15 @@ export default class Sudoku extends Component {
     if (!nextProps.finished) {
       this.initialiseSudoku(nextProps);
     }
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'Dosis': require('../assets/fonts/Dosis-ExtraBold.ttf'),
+      'Dosis-Light': require('../assets/fonts/Dosis-Bold.ttf'),
+    });
+    //Setting the state to true when font is loaded.
+    this.setState({ fontLoaded: true });
   }
 
   initialiseSudoku(props) {
@@ -253,23 +264,30 @@ export default class Sudoku extends Component {
     return (
       <View style={style.container} >
 
-        <View style={{flex: 1, flexDirection: 'row', maxHeight: 60}}>
-          <TouchableWithoutFeedback
-            style={style.clear}
-            onPress={() => this.clear()}
-          ><View><Text>Clear</Text></View></TouchableWithoutFeedback>
-
+        <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
           <TouchableWithoutFeedback
             style={style.clear}
             onPress={() => this.props.cancelGame()}
-          ><View><Text>Cancel</Text></View></TouchableWithoutFeedback>
-          
+            >
+            <View style={style.clearWrapper} >
+              <Image style={style.clearImage} source={require('../assets/img/arrow.png')} />
+            </View>
+          </TouchableWithoutFeedback>
+
+          {
+            this.state.fontLoaded ? (
+              <Text style={style.title}>Simple</Text>
+            ) : null
+          }
+
           <TouchableWithoutFeedback
             style={style.clear}
-            onPress={() => this.save()}
-          ><View><Text>Save Current Progress</Text></View></TouchableWithoutFeedback>
-          
-          <RestoreList delete={(index) => this.delete(index)} stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
+            onPress={() => this.clear()}
+            >
+            <View style={style.clearWrapper} >
+              <Image style={style.clearImage} source={require('../assets/img/clear.png')} />
+            </View>
+          </TouchableWithoutFeedback>
         </View>
 
         <View style={[style.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>
@@ -288,4 +306,12 @@ export default class Sudoku extends Component {
   }
 }
 
+/*
+<TouchableWithoutFeedback
+            style={style.clear}
+            onPress={() => this.save()}
+          ><View><Text>Save Current Progress</Text></View></TouchableWithoutFeedback>
+          
+          <RestoreList delete={(index) => this.delete(index)} stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
+          */
 
