@@ -94,7 +94,13 @@ export default class Cell extends Component {
               ) : null
             }
           </View>
-          <View style={style.cellShadow}></View>
+          <View style={[
+            style.cellShadow,
+            (this.state.axis % 2 === 0 ? style.lightCellShadow : []),
+            (this.props.data.selected ? style.selectedShadow : []),
+            (error ? style.errorShadow : []),
+            (this.props.data.flag ? style.flagShadow : []),
+          ]}></View>
         </View>
       </TouchableWithoutFeedback>
     );

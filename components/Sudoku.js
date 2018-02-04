@@ -19,7 +19,8 @@ export default class Sudoku extends Component {
      currentSudoku: '',
      prefilledArr: '',
      errors: [],
-     flags: []
+     flags: [],
+     highlight: []
     }
   }
 
@@ -271,18 +272,9 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    // padding: 10,
     alignItems: 'center',
-    // flex: 1,
-    // justifyContent: 'center'
   },
   wrapper: {
-    // flex: 1,
-    // justifyContent: 'space-between',
-    // height: 315,
-    // width: '100%',
-    // aspectRatio: 1,
-    // alignItems: 'center',
     marginBottom: 50
   },
   row: {

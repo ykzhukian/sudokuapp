@@ -13,11 +13,16 @@ var colors = require('./colors');
 module.exports = StyleSheet.create({
 
 	selected: {
-    borderWidth: 1,
-    borderColor: 'orange',
+    backgroundColor: colors.colors.selected
+  },
+  selectedShadow: {
+    backgroundColor: colors.colors.selectedShadow
   },
   error: {
-    backgroundColor: '#fc8585',
+    backgroundColor: colors.colors.error
+  },
+  errorShadow: {
+    backgroundColor: colors.colors.errorShadow
   },
   highlistText: {
     color: '#fff'
@@ -27,7 +32,10 @@ module.exports = StyleSheet.create({
     fontFamily: 'Dosis'
   },
   flag: {
-    backgroundColor: '#42bcf4'
+    backgroundColor: colors.colors.flag
+  },
+  flagShadow: {
+    backgroundColor: colors.colors.flagShadow
   },
   cellWrapper: {
     flex: 1,
