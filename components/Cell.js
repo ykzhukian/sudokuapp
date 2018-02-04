@@ -86,7 +86,7 @@ export default class Cell extends Component {
               (this.state.axis % 2 === 0 ? style.lightCell : []),
               (error ? style.error : []),
               (this.props.data.flag ? style.flag : []),
-              (this.props.data.selected ? style.selected : []),
+              ((this.props.data.selectedLink === this.props.data.value && this.props.data.value !== '') || this.props.data.selected ? style.selected : []),
             ]} >
             
             {

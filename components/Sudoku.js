@@ -248,7 +248,8 @@ export default class Sudoku extends Component {
               selected: this.state.selected && this.state.selected.row === rowIndex && this.state.selected.col === index,
               flag: Util.checkDuplicate(this.state.flags, [rowIndex, index]),
               highlight: this.state.highlight,
-              inputModal: this.state.inputModal
+              inputModal: this.state.inputModal,
+              selectedLink: (this.state.selected.row || this.state.selected.row === 0 ? this.state.currentSudoku[this.state.selected.row][this.state.selected.col] : '')
             }} 
             showInput={(position) => this.showInputModal(position)}
             // updateSudoku={ (value, position) => this.update(value, position) } 
@@ -298,6 +299,7 @@ export default class Sudoku extends Component {
 
         <InputModal 
           active={this.state.inputModal}
+          selected={this.state.selected.row || this.state.selected.row === 0 ? this.state.currentSudoku[this.state.selected.row][this.state.selected.col] : ''}
           hideInput={() => this.hideInputModal()} 
           update={(val) => this.update(val)} />
 

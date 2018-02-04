@@ -33,12 +33,18 @@ export default class InputModal extends Component {
       <TouchableWithoutFeedback 
         onPress={() => this.props.onPress(this.props.value)}>
         <View style={style.buttonWrapper}>
-          <View style={[style.button, (this.props.value === '' ? style.lightButton : [])]} >
+          <View style={[
+            style.button, (this.props.value === '' ? style.lightButton : []),
+            (this.props.selected !== '' && this.props.selected === this.props.value ? style.selected : ''),
+            ]} >
             {this.state.fontLoaded ? 
               (<Text style={style.buttonText}>{this.props.value === '' ? '←' : this.props.value}</Text>) : null
             }
           </View>
-          <View style={[style.buttonShadow, (this.props.value === '' ? style.lightButtonShadow : [])]} ></View>
+          <View style={[
+            style.buttonShadow, (this.props.value === '' ? style.lightButtonShadow : []),
+            (this.props.selected !== '' && this.props.selected === this.props.value ? style.selectedShadow : ''),
+            ]} ></View>
         </View>
         
       </TouchableWithoutFeedback>

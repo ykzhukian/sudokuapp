@@ -70,6 +70,13 @@ module.exports = StyleSheet.create({
 
   buttonDisabled: {
 		opacity: 0.4
-  }
+  },
+  
+  selected: {
+    backgroundColor: colors.colors.selected
+  },
+  selectedShadow: {
+    backgroundColor: colors.colors.selectedShadow
+  },
 
 });
