@@ -13,6 +13,12 @@ var colors = {
 	flagShadow: '#2264B2',
 	board: '#1F204C',
 	boardShadow: '#1A1B43',
+	green: '#9FCF8C',
+	greenShadow: '#76B260',
+	yellow: '#F4DA6F',
+	yellowShadow: '#D6C066',
+	orange: '#F4BA5C',
+	orangeShadow: '#CC9438'
 };
 
 
