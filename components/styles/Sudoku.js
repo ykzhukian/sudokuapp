@@ -77,6 +77,11 @@ module.exports = StyleSheet.create({
 		justifyContent: 'center'
 	},
 
+	clearImage: {
+		height: 50,
+		width: 50,
+	},
+
 	title: {
 		fontFamily: 'Dosis',
 		fontSize: 28,
