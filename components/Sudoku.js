@@ -7,6 +7,8 @@ import Cell from './Cell';
 import InputModal from './InputModal';
 import RestoreList from './RestoreList';
 
+const style = require('./styles/Sudoku');
+
 export default class Sudoku extends Component {
 
 	constructor(props) {
@@ -222,7 +224,7 @@ export default class Sudoku extends Component {
     const sudokuBlock = this.state.currentSudoku.length
     ?
     this.state.currentSudoku.map((row, rowIndex) => (
-      <View key={rowIndex} style={styles.row}>
+      <View key={rowIndex} style={style.row}>
         {row.map((value, index) => (
           <Cell 
             key={index} 
@@ -249,63 +251,41 @@ export default class Sudoku extends Component {
 
 
     return (
-      <View style={styles.container} >
+      <View style={style.container} >
 
         <View style={{flex: 1, flexDirection: 'row', maxHeight: 60}}>
           <TouchableWithoutFeedback
-            style={styles.clear}
+            style={style.clear}
             onPress={() => this.clear()}
           ><View><Text>Clear</Text></View></TouchableWithoutFeedback>
 
           <TouchableWithoutFeedback
-            style={styles.clear}
+            style={style.clear}
             onPress={() => this.props.cancelGame()}
           ><View><Text>Cancel</Text></View></TouchableWithoutFeedback>
           
           <TouchableWithoutFeedback
-            style={styles.clear}
+            style={style.clear}
             onPress={() => this.save()}
           ><View><Text>Save Current Progress</Text></View></TouchableWithoutFeedback>
           
           <RestoreList delete={(index) => this.delete(index)} stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
         </View>
 
-        <View style={[styles.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>{sudokuBlock}</View>
+        <View style={[style.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>
+          {sudokuBlock}
+          <View style={style.board}></View>
+          <View style={style.boardShadow}></View>
+        </View>
 
         <InputModal 
           active={this.state.inputModal}
           hideInput={() => this.hideInputModal()} 
           update={(val) => this.update(val)} />
 
-          <View style={styles.board}></View>
-          <View style={styles.boardShadow}></View>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-  },
-  wrapper: {
-    marginBottom: 50
-  },
-  row: {
-    width: '100%',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  clear: {
-    marginTop: 50
-  },
-  active: {
-    textDecorationLine: 'underline'
-  }
-});
-
 
 

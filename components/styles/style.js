@@ -17,16 +17,7 @@ module.exports = StyleSheet.create({
 	  height: '100%',
     width: '100%',
     paddingTop: 20,
-		position: 'relative'
-	},
 
-	board: {
-		backgroundColor: colors.colors.boardColor,
-		height: '110%',
-		width: '110%',
-		top: 0,
-		start: 0,
-		position: 'absolute'
 	}
 
 });
