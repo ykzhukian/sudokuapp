@@ -276,6 +276,9 @@ export default class Sudoku extends Component {
           active={this.state.inputModal}
           hideInput={() => this.hideInputModal()} 
           update={(val) => this.update(val)} />
+
+          <View style={styles.board}></View>
+          <View style={styles.boardShadow}></View>
       </View>
     );
   }
@@ -294,7 +297,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   clear: {
     marginTop: 50

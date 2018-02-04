@@ -61,7 +61,7 @@ module.exports = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     backgroundColor: colors.colors.darkButtonShadow,
-    bottom: -4
+    bottom: -3
   },
   cellText: {
     fontSize: 18,

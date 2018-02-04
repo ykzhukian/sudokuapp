@@ -10,7 +10,8 @@ var colors = {
 	error: '#F35467',
 	errorShadow: '#C94253',
 	flag: '#2C81E4',
-	flagShadow: '#2264B2'
+	flagShadow: '#2264B2',
+	boardColor: '#1F204C'
 };
 
 
