@@ -69,12 +69,15 @@ export default class Cell extends Component {
   render() {
 
     let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
+    let highlight = (this.props.data.highlight.row === this.props.data.row) ||
+                    (this.props.data.highlight.col === this.props.data.col) || 
+                    (this.props.data.highlight.axis === this.state.axis)
 
     return (
       <TouchableWithoutFeedback 
         onPress={(e) => this.onPress(e)} 
         disabled={!this.props.data.activated} >
-        <View style={style.cellWrapper}>
+        <View style={[style.cellWrapper, (!highlight && this.props.data.inputModal ? style.fade : [])]}>
           <View 
             style={[
               style.cell, 

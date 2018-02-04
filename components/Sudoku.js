@@ -14,13 +14,13 @@ export default class Sudoku extends Component {
   
     this.state = {
      inputModal: false,
-     selected: [],
+     selected: {},
      sudoku: '',
      currentSudoku: '',
      prefilledArr: '',
      errors: [],
      flags: [],
-     highlight: []
+     highlight: {}
     }
   }
 
@@ -169,16 +169,27 @@ export default class Sudoku extends Component {
   }
 
   showInputModal(position) {
+
+    let axis = Util.checkAxis(position);
+    let highlight = {
+      axis: axis,
+      row: position.row,
+      col: position.col
+    }
+    // console.log('axis ',axis)
+    
     this.setState({
       inputModal: true,
-      selected: position
+      selected: position,
+      highlight: highlight
     })
   }
 
   hideInputModal() {
     this.setState({
       inputModal: false,
-      selected: {}
+      selected: {},
+      highlight: {}
     })
   }
 
@@ -222,7 +233,9 @@ export default class Sudoku extends Component {
               row: rowIndex,
               col: index,
               selected: this.state.selected && this.state.selected.row === rowIndex && this.state.selected.col === index,
-              flag: Util.checkDuplicate(this.state.flags, [rowIndex, index])
+              flag: Util.checkDuplicate(this.state.flags, [rowIndex, index]),
+              highlight: this.state.highlight,
+              inputModal: this.state.inputModal
             }} 
             showInput={(position) => this.showInputModal(position)}
             // updateSudoku={ (value, position) => this.update(value, position) } 

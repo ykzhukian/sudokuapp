@@ -74,5 +74,8 @@ module.exports = StyleSheet.create({
   lightCellShadow: { 
     backgroundColor: colors.colors.lightButtonShadow,
   },
+  fade: {
+    opacity: 0.4
+  }
 
 });
