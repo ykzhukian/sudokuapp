@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert, ImageBackground } from 'react-native';
 import { Font } from 'expo';
 
 import Util from '../helpers/Util';
@@ -71,14 +71,16 @@ export default class Cell extends Component {
     let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
     let highlight = (this.props.data.highlight.row === this.props.data.row) ||
                     (this.props.data.highlight.col === this.props.data.col) || 
-                    (this.props.data.highlight.axis === this.state.axis)
+                    (this.props.data.highlight.axis === this.state.axis);
+    let backgroundSrc = this.props.data.activated ? null : require('../assets/img/cell-slide.png');
 
     return (
       <TouchableWithoutFeedback 
         onPress={(e) => this.onPress(e)} 
         disabled={!this.props.data.activated} >
         <View style={[style.cellWrapper, (!highlight && this.props.data.inputModal ? style.fade : [])]}>
-          <View 
+          <ImageBackground 
+            source={backgroundSrc}
             style={[
               style.cell, 
               (this.state.axis % 2 === 0 ? style.lightCell : []),
@@ -96,7 +98,7 @@ export default class Cell extends Component {
                 ]} >{this.props.data.value}</Text>
               ) : null
             }
-          </View>
+          </ImageBackground>
           <View style={[
             style.cellShadow,
             (this.state.axis % 2 === 0 ? style.lightCellShadow : []),
