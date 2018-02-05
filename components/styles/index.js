@@ -22,7 +22,8 @@ module.exports = StyleSheet.create({
 	},
 
 	wrapper: {
-		width: 220
+		width: 220,
+		zIndex: 999
 	},
 
 	title: {
@@ -92,6 +93,14 @@ module.exports = StyleSheet.create({
 
 	redShadow: {
 		backgroundColor: colors.colors.errorShadow,
+	},
+
+	bg: {
+		position: 'absolute',
+		width: '100%',
+		height: '100%',
+		top: 25,
+		zIndex: 1
 	}
 
 });

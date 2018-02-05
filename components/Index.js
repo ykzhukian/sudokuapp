@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sudoku from './Sudoku';
 import { Font } from 'expo';
 
-import { StyleSheet, Text, View, StatusBar, Alert, TouchableWithoutFeedback, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Alert, TouchableWithoutFeedback, Image } from 'react-native';
 
 const style = require('./styles/index');
 
@@ -94,9 +94,17 @@ export default class Index extends Component {
     (<Sudoku prefilled={this.state.difficulty} cancelGame={() => this.cancelGame()} />)
     ;
 
+    const bg = (this.state.difficulty === 0) ? 
+    (<Image style={style.bg} source={require('../assets/img/home.png')} />)
+    :
+    null
+    ;
+
     return (
       <View style={style.container}>
+        <StatusBar barStyle="light-content" />
         {this.state.fontLoaded ? content : null}
+        {bg}
       </View>
     );
   }
