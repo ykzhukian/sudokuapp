@@ -46,15 +46,26 @@ module.exports = StyleSheet.create({
 
 	},
 
-	button: {
-		height: 55,
-		width: '100%',
+	buttonWrapper: {
+		position: 'relative',
 		marginTop: 20,
+		height: 60,
+	},
+
+	button: {
+		width: '100%',
 		borderRadius: 4,
 		backgroundColor: colors.colors.green,
 		justifyContent: 'center',
 		alignItems: 'center',
-		zIndex: 3
+		zIndex: 3,
+		position: 'absolute',
+		top: 0,
+		height: 60
+	},
+
+	buttonPressed: {
+		marginTop: 5
 	},
 
 	buttonText: {
@@ -64,11 +75,13 @@ module.exports = StyleSheet.create({
 	},
 
 	buttonShadow: {
+		position: 'absolute',
 		width: '100%',
-		height: 16,
+		height: 30,
 		borderRadius: 4,
 		backgroundColor: colors.colors.greenShadow,
-		marginTop: -10
+		marginBottom: -5,
+		bottom: 0
 	},
 
 	yellow: {
@@ -99,8 +112,15 @@ module.exports = StyleSheet.create({
 		position: 'absolute',
 		width: '100%',
 		height: '100%',
+		zIndex: 3
+	},
+
+	bgImg: {
+		width: '100%',
+		height: '100%',
+		position: 'absolute',
 		top: 25,
-		zIndex: 1
+		start: 0
 	}
 
 });
