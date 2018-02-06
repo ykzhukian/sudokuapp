@@ -13,8 +13,22 @@ export default class InputModal extends Component {
     super(props)
   
     this.state = {
-     
+      pressed: false
     }
+  }
+
+  pressIn() {
+    if (this.props.active) {
+      this.setState({
+        pressed: true
+      })
+    }
+  }
+
+  pressOut() {
+    this.setState({
+      pressed: false
+    })
   }
 
   async componentDidMount() {
@@ -31,10 +45,14 @@ export default class InputModal extends Component {
 
     return (
       <TouchableWithoutFeedback 
+        onPressIn={() => this.pressIn()}
+        onPressOut={() => this.pressOut()}
         onPress={() => this.props.onPress(this.props.value)}>
         <View style={style.buttonWrapper}>
           <View style={[
-            style.button, (this.props.value === '' ? style.lightButton : []),
+            style.button, 
+            (this.state.pressed? style.buttonPressed : []),
+            (this.props.value === '' ? style.lightButton : []),
             (this.props.selected !== '' && this.props.selected === this.props.value ? style.selected : ''),
             ]} >
             {this.state.fontLoaded ? 

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import Sudoku from './Sudoku';
 import { Font } from 'expo';
+
+import Sudoku from './Sudoku';
+import IndexButton from './IndexButton';
+
 
 import { 
   StyleSheet, 
@@ -57,26 +60,10 @@ export default class Index extends Component {
   }
 
 
-  selectDifficulty(event, value) {
+  selectDifficulty(value) {
     this.setState({
       difficulty: value,
       win: false
-    })
-  }
-
-  pressIn(index) {
-    let pressed = this.state.pressed;
-    pressed[index] = true;
-    this.setState({
-      pressed: pressed
-    })
-  }
-
-  pressOut(index) {
-    let pressed = this.state.pressed;
-    pressed[index] = false;
-    this.setState({
-      pressed: pressed
     })
   }
 
@@ -143,30 +130,26 @@ export default class Index extends Component {
           <Text style={style.title} >Sudoku</Text>
           <Text style={[style.title, style.titleShadow]} >Sudoku</Text>
         </View>
-        <TouchableWithoutFeedback onPressIn={() => this.pressIn(0)} onPressOut={() => this.pressOut(0)} onPress={(e) => this.selectDifficulty(e, 45)} >
-          <View style={style.buttonWrapper} >
-            <View style={[style.button, (this.state.pressed[0]? style.buttonPressed : [])]}><Text style={style.buttonText}>Simple</Text></View>
-            <View style={style.buttonShadow}></View>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={(e) => this.selectDifficulty(e, 35)} >
-          <View style={style.buttonWrapper} >
-            <View style={[style.button, style.yellow]}><Text style={style.buttonText}>Intermediate</Text></View>
-            <View style={[style.buttonShadow, style.yellowShadow]}></View>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={(e) => this.selectDifficulty(e, 25)} >
-          <View style={style.buttonWrapper} >
-            <View style={[style.button, style.orange]}><Text style={style.buttonText}>Hard</Text></View>
-            <View style={[style.buttonShadow, style.orangeShadow]}></View>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={(e) => this.selectDifficulty(e, 17)} >
-          <View style={style.buttonWrapper} >
-            <View style={[style.button, style.red]}><Text style={style.buttonText}>Challenging</Text></View>
-            <View style={[style.buttonShadow, style.redShadow]}></View>
-          </View>
-        </TouchableWithoutFeedback>
+        <IndexButton 
+          text={'Simple'} 
+          value={45} 
+          color={'green'}
+          selectDifficulty={(val) => this.selectDifficulty(val)} />
+        <IndexButton 
+          text={'Intermediate'} 
+          value={35} 
+          color={'yellow'}
+          selectDifficulty={(val) => this.selectDifficulty(val)} />
+        <IndexButton 
+          text={'Hard'} 
+          value={25} 
+          color={'orange'}
+          selectDifficulty={(val) => this.selectDifficulty(val)} />
+        <IndexButton 
+          text={'Challenging'} 
+          value={17} 
+          color={'red'}
+          selectDifficulty={(val) => this.selectDifficulty(val)} />
       </View>
     )
     :
@@ -178,7 +161,7 @@ export default class Index extends Component {
     <View style={style.bg} >
       <Animated.Image style={[style.bgImg, {marginTop}]}  source={require('../assets/img/Group_1.png')} />
       <Animated.Image style={[style.bgImg, {opacity}]}  source={require('../assets/img/Group_2.png')} />
-      <Animated.Image style={[style.bgImg, {transform: [{translateY: up}]}]}  source={require('../assets/img/Group_3.png')} />
+      <Animated.Image style={[style.bgImg, {transform: [{translateX: up}]}]}  source={require('../assets/img/Group_3.png')} />
       <Animated.Image style={[style.bgImg, {marginLeft}]}  source={require('../assets/img/Group_4.png')} />
     </View>
     )

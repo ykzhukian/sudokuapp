@@ -42,7 +42,11 @@ module.exports = StyleSheet.create({
   	alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    zIndex: 9
+    zIndex: 9,
+  },
+
+  buttonPressed: {
+    bottom: -5
   },
   
   buttonText: {
