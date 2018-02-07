@@ -4,7 +4,6 @@ import { Font } from 'expo';
 import Sudoku from './Sudoku';
 import IndexButton from './IndexButton';
 
-
 import { 
   StyleSheet, 
   Text, 
@@ -14,7 +13,8 @@ import {
   TouchableWithoutFeedback, 
   Image,
   Animated,
-  Easing
+  Easing,
+  AsyncStorage
 } from 'react-native';
 
 const style = require('./styles/index');
@@ -29,7 +29,7 @@ export default class Index extends Component {
     this.state = {
       difficulty: 0,
       win: false,
-      pressed: [false,false,false,false]
+      playing: false
     };
     this.animateValue = new Animated.Value(0);
     this.animateSlowValue = new Animated.Value(0);
@@ -59,12 +59,11 @@ export default class Index extends Component {
     ).start(() => this.animateSlow())
   }
 
-
   selectDifficulty(value) {
     this.setState({
       difficulty: value,
-      win: false
-    })
+      win: false,
+    }, () => { Util.storeData('difficulty', {difficulty: value}) } );
   }
 
   async componentDidMount() {
@@ -76,6 +75,17 @@ export default class Index extends Component {
     this.setState({ fontLoaded: true });
     this.animate();
     this.animateSlow();
+
+    // Reading storage for current progress
+    Util.fetchData('difficulty', (err, result) => {
+      console.log(result);
+      if (result.difficulty !== 0) {
+        this.setState({
+          playing: true
+        })
+      }
+    });
+
   }
 
   cancelGame() {
@@ -86,8 +96,10 @@ export default class Index extends Component {
           {text: 'Go on', onPress: () => {
             this.setState({
               difficulty: 0,
-              win: false
+              win: false,
+              playing: false
             })
+            Util.storeData('difficulty', {difficulty: 0})
           }},
           {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
         ]
@@ -96,8 +108,10 @@ export default class Index extends Component {
 
   win() {
     this.setState({
-      win: true
+      win: true,
+      playing: false
     })
+    Util.storeData('difficulty', {difficulty: 0})
   }
 
   render() {
@@ -122,7 +136,7 @@ export default class Index extends Component {
       outputRange: [0, -10, 0]
     })
 
-    const content = this.state.difficulty === 0 
+    const content = this.state.difficulty === 0 && !this.state.playing
     ?
     (
       <View style={style.wrapper} >
@@ -153,10 +167,10 @@ export default class Index extends Component {
       </View>
     )
     :
-    (<Sudoku prefilled={this.state.difficulty} cancelGame={() => this.cancelGame()} />)
+    (<Sudoku restoring={this.state.playing} prefilled={this.state.difficulty} cancelGame={() => this.cancelGame()} />)
     ;
 
-    const bg = (this.state.difficulty === 0) ? 
+    const bg = (this.state.difficulty === 0 && !this.state.playing) ? 
     ( 
     <View style={style.bg} >
       <Animated.Image style={[style.bgImg, {marginTop}]}  source={require('../assets/img/Group_1.png')} />

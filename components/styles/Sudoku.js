@@ -8,8 +8,6 @@ var {
 
 var colors = require('./colors');
 
-console.log(colors);
-
 module.exports = StyleSheet.create({
 
 	container: {

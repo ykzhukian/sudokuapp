@@ -29,12 +29,49 @@ export default class Sudoku extends Component {
   }
 
   componentWillMount() {
-    this.initialiseSudoku(this.props);
+    if (this.props.restoring) {
+      // Reading from storage
+      Util.fetchData('progress', (err, result) => {
+        console.log('1',result.sudok);
+        if (result.sudoku) {
+          console.log(result.sudoku);
+          this.setState({
+            sudoku: result.sudoku,
+            prefilledArr: result.prefilledArr,
+            currentSudoku: result.currentSudoku,
+            errors: result.errors,
+            initial: result.inital,
+            saved: result.saved,
+            flags: result.flags
+          })
+        }
+      });
+    } else {
+      this.initialiseSudoku(this.props);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.finished) {
-      this.initialiseSudoku(nextProps);
+    if (nextProps.restoring) {
+      // Reading from storage
+      Util.fetchData('progress', (err, result) => {
+        console.log('3',result);
+        if (result.sudoku) {
+          this.setState({
+            sudoku: result.sudoku,
+            prefilledArr: result.prefilledArr,
+            currentSudoku: result.currentSudoku,
+            errors: result.errors,
+            initial: result.inital,
+            saved: result.saved,
+            flags: result.flags
+          })
+        }
+      });
+    } else {
+      if (!nextProps.finished) {
+        this.initialiseSudoku(nextProps);
+      }
     }
   }
 
@@ -68,7 +105,17 @@ export default class Sudoku extends Component {
       errors: [],
       initial: true,
       saved: []
+    }, () => {
+      Util.storeData('progress', {
+        sudoku: newSudoku,
+        prefilledArr: prefilledArr,
+        currentSudoku: currentSudoku,
+        errors: [],
+        initial: true,
+        saved: []
+      });
     });
+    
   }
 
   save() {
@@ -158,6 +205,11 @@ export default class Sudoku extends Component {
               this.setState({
                 currentSudoku: currentSudoku,
                 errors: errors
+              }, () => {
+                Util.storeData('progress', {
+                  currentSudoku: currentSudoku,
+                  errors: errors
+                });
               });
             }},
             {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
@@ -170,7 +222,11 @@ export default class Sudoku extends Component {
     flags.push([position.row, position.col]);
     this.setState({
       flags: flags
-    })
+    }, () => {
+      Util.storeData('progress', {
+        flags: flags
+      });
+    });
   }
 
   removeFlag(position) {
@@ -178,7 +234,11 @@ export default class Sudoku extends Component {
     Util.removeFromArr(flags,[position.row, position.col]);
     this.setState({
       flags: flags
-    })
+    }, () => {
+      Util.storeData('progress', {
+        flags: flags
+      });
+    });
   }
 
   showInputModal(position) {
@@ -224,7 +284,13 @@ export default class Sudoku extends Component {
       currentSudoku: currentSudoku,
       errors: errors,
       initial: false
-    })
+    }, () => {
+      Util.storeData('progress', {
+        currentSudoku: currentSudoku,
+        errors: errors,
+        initial: false
+      });
+    });
   }
 
 

@@ -1,6 +1,6 @@
 // import $ from 'jquery';
 
-import {Dimensions} from 'react-native';
+import {Dimensions,AsyncStorage} from 'react-native';
 
 const SEED_SUDOKU = [
 	[8, 7, 4, 6, 3, 1, 5, 9, 2],
@@ -313,6 +313,31 @@ const Mixin = {
 
   deviceWidth() {return Dimensions.get('window').width - 40;},
 
+  async storeData(key, value) {
+    try {
+      AsyncStorage.getItem(key, async (err, result) => {
+        if (result !== null) {
+          AsyncStorage.mergeItem(key, JSON.stringify(value));
+        } else {
+          AsyncStorage.setItem(key, JSON.stringify(value));  
+        }
+      });
+    } catch (error) {
+      // Error saving data
+      console.log(error)
+    }
+  },
+
+  async fetchData(key, cb) { 
+    try {
+      AsyncStorage.getItem(key, async (err, result) => {
+        cb(err, JSON.parse(result));
+      });
+    } catch (error) {
+      // Error saving data
+      console.log(error)
+    }
+  }
 
 };
 
