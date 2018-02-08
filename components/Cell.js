@@ -31,7 +31,6 @@ export default class Cell extends Component {
 
   onPress(e) {
     const now = new Date().getTime();
-    this.props.showInput({row:this.state.row, col: this.state.col});
 
     if (this.lastImagePress && (now - this.lastImagePress) < DOUBLE_PRESS_DELAY) {
       delete this.lastImagePress;
@@ -43,6 +42,10 @@ export default class Cell extends Component {
       this.lastImagePress = now;
     }
     
+  }
+
+  onPressIn() {
+    this.props.showInput({row:this.state.row, col: this.state.col});
   }
 
   onDoubleClick(event) {
@@ -76,6 +79,7 @@ export default class Cell extends Component {
 
     return (
       <TouchableWithoutFeedback 
+        onPressIn={() => this.onPressIn()}
         onPress={(e) => this.onPress(e)} 
         disabled={!this.props.data.activated} >
         <View style={[style.cellWrapper, (!highlight && this.props.data.inputModal ? style.fade : [])]}>

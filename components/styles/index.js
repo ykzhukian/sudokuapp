@@ -41,7 +41,6 @@ module.exports = StyleSheet.create({
 
 	titleWrapper: {
 		position: 'relative',
-
 	},
 
 	buttonWrapper: {
@@ -65,7 +64,7 @@ module.exports = StyleSheet.create({
 	buttonReflection: {
 		position: 'absolute',
 		width: '95%',
-		backgroundColor: '#fff',
+		backgroundColor: colors.colors.white,
 		top: 5,
 		height: 30,
 		borderRadius: 3,
@@ -74,13 +73,25 @@ module.exports = StyleSheet.create({
 
 	buttonReflectionRound: {
 		position: 'absolute',
-		width: 8,
+		width: 10,
 		height: 5,
 		borderRadius: 3,
 		right: '5%',
 		top: 5,
-		backgroundColor: '#fff',
+		backgroundColor: colors.colors.white,
 		marginRight: -5,
+		opacity: 0.3,
+	},
+
+	buttonReflectionLarge: {
+		position: 'absolute',
+		width: 60,
+		height: 5,
+		borderRadius: 3,
+		right: '5%',
+		top: 5,
+		backgroundColor: colors.colors.white,
+		marginRight: 8,
 		opacity: 0.3,
 	},
 

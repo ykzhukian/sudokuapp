@@ -56,8 +56,11 @@ export default class InputModal extends Component {
             (this.props.selected !== '' && this.props.selected === this.props.value ? style.selected : ''),
             ]} >
             {this.state.fontLoaded ? 
-              (<Text style={style.buttonText}>{this.props.value === '' ? '←' : this.props.value}</Text>) : null
+              (<Text style={style.buttonText}>{this.props.value === '' ? 'x' : this.props.value}</Text>) : null
             }
+            <View style={style.buttonReflectionRound} ></View>
+            <View style={style.buttonReflectionLarge} ></View>
+            <View style={style.buttonReflection} ></View>
           </View>
           <View style={[
             style.buttonShadow, (this.props.value === '' ? style.lightButtonShadow : []),
@@ -69,9 +72,4 @@ export default class InputModal extends Component {
     );
   }
 }
-
-
-
-
-
 

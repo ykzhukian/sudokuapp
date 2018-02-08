@@ -24,7 +24,6 @@ export default class InputModal extends Component {
     }
   }
 
-
   render() {
 
     // let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
