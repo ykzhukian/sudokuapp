@@ -9,6 +9,7 @@ import InputModal from './InputModal';
 import RestoreList from './RestoreList';
 import Loading from './Loading';
 import { Font } from 'expo';
+import Swiper from 'react-native-swiper';
 
 
 const style = require('./styles/Sudoku');
@@ -327,34 +328,38 @@ export default class Sudoku extends Component {
     : (<Loading />);
 
 
-    return (
-      <View style={style.container} >
+    return (  
+      <Swiper loop={false} showsPagination={false} >
 
-        <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
-          <ControlButton buttonFunction={() => this.props.cancelGame()} icon={require('../assets/img/arrow.png')} />
+        <View style={style.container} >
+          <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
+            <ControlButton buttonFunction={() => this.props.cancelGame()} icon={require('../assets/img/arrow.png')} />
+            {
+              this.state.fontLoaded ? (
+                <Text style={style.title}>Simple</Text>
+              ) : null
+            }
+            <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
+          </View>
 
-          {
-            this.state.fontLoaded ? (
-              <Text style={style.title}>Simple</Text>
-            ) : null
-          }
+          <View style={[style.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>
+            {sudokuBlock}
+            <View style={style.board}></View>
+            <View style={style.boardShadow}></View>
+          </View>
 
-          <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
+          <InputModal 
+            active={this.state.inputModal}
+            selected={this.state.selected.row || this.state.selected.row === 0 ? this.state.currentSudoku[this.state.selected.row][this.state.selected.col] : ''}
+            hideInput={() => this.hideInputModal()} 
+            update={(val) => this.update(val)} />
         </View>
 
-        <View style={[style.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>
-          {sudokuBlock}
-          <View style={style.board}></View>
-          <View style={style.boardShadow}></View>
+        <View>
+          <Text>Saved Progress!</Text>
         </View>
 
-        <InputModal 
-          active={this.state.inputModal}
-          selected={this.state.selected.row || this.state.selected.row === 0 ? this.state.currentSudoku[this.state.selected.row][this.state.selected.col] : ''}
-          hideInput={() => this.hideInputModal()} 
-          update={(val) => this.update(val)} />
-
-      </View>
+      </Swiper>
     );
   }
 }
