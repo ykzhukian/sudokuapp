@@ -24,8 +24,8 @@ module.exports = StyleSheet.create({
   buttonWrapper: {
     position: 'relative',
     marginTop: 20,
-    height: 50,
-    width: 50
+    height: 35,
+    width: 35
   },
 
   button: {
@@ -37,7 +37,7 @@ module.exports = StyleSheet.create({
     zIndex: 3,
     position: 'absolute',
     top: 0,
-    height: 50,
+    height: 35,
   },
 
   pressed: {
@@ -46,10 +46,10 @@ module.exports = StyleSheet.create({
 
   buttonReflection: {
     position: 'absolute',
-    width: 46,
+    width: 31,
     backgroundColor: colors.colors.white,
     top: 2,
-    height: 20,
+    height: 15,
     borderRadius: 3,
     opacity: 0.1,
     zIndex: 4,
@@ -68,8 +68,8 @@ module.exports = StyleSheet.create({
 
   buttonReflectionRound: {
     position: 'absolute',
-    width: 7,
-    height: 4,
+    width: 4,
+    height: 3,
     borderRadius: 3,
     right: 0,
     top: 2,
@@ -81,13 +81,13 @@ module.exports = StyleSheet.create({
 
   buttonReflectionLarge: {
     position: 'absolute',
-    width: 20,
-    height: 4,
+    width: 8,
+    height: 3,
     borderRadius: 3,
     right: 0,
     top: 2,
     backgroundColor: colors.colors.white,
-    marginRight: 12,
+    marginRight: 8,
     opacity: 0.2,
     zIndex: 4
   },
@@ -96,6 +96,14 @@ module.exports = StyleSheet.create({
     fontSize: 24,
     fontFamily: 'Dosis',
     color: colors.colors.white
+  },
+
+  wrapper: {
+    width: '80%',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 
 });
