@@ -3,7 +3,9 @@ import { Font } from 'expo';
 
 import Sudoku from './Sudoku';
 import IndexButton from './IndexButton';
+
 import Loading from './Loading';
+import SavedProgress from './SavedProgress';
 
 import { 
   StyleSheet, 
@@ -181,13 +183,19 @@ export default class Index extends Component {
     :
     null
 
+    // return (
+    //   <View style={style.container}>
+    //     <StatusBar barStyle="light-content" />
+    //     {this.state.fontLoaded ? content : null}
+    //     {bg}
+    //   </View>
+    // );
+    // return (<Loading></Loading>)
     return (
       <View style={style.container}>
-        <StatusBar barStyle="light-content" />
-        {this.state.fontLoaded ? content : null}
-        {bg}
+        <SavedProgress />
       </View>
-    );
+    )
   }
 }
 
