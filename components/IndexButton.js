@@ -44,6 +44,9 @@ export default class InputButton extends Component {
             (this.props.color === 'red' ? style.red : []),
             (this.state.pressed? style.buttonPressed : [])]}>
             <Text style={style.buttonText}>{this.props.text}</Text>
+            <View style={style.buttonReflectionRound} ></View>
+            <View style={style.buttonReflectionLarge} ></View>
+            <View style={style.buttonReflection} ></View>
           </View>
           <View style={[
             style.buttonShadow,

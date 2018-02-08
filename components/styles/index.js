@@ -62,6 +62,28 @@ module.exports = StyleSheet.create({
 		height: 60
 	},
 
+	buttonReflection: {
+		position: 'absolute',
+		width: '95%',
+		backgroundColor: '#fff',
+		top: 5,
+		height: 30,
+		borderRadius: 3,
+		opacity: 0.3
+	},
+
+	buttonReflectionRound: {
+		position: 'absolute',
+		width: 8,
+		height: 5,
+		borderRadius: 3,
+		right: '5%',
+		top: 5,
+		backgroundColor: '#fff',
+		marginRight: -5,
+		opacity: 0.3,
+	},
+
 	buttonPressed: {
 		marginTop: 5
 	},

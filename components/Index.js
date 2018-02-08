@@ -21,7 +21,6 @@ const style = require('./styles/index');
 
 import Util from '../helpers/Util';
 
-
 export default class Index extends Component {
 
   constructor(props) {
@@ -79,13 +78,12 @@ export default class Index extends Component {
     // Reading storage for current progress
     Util.fetchData('difficulty', (err, result) => {
       console.log(result);
-      if (result.difficulty !== 0) {
+      if (result.difficulty) {
         this.setState({
           playing: true
         })
       }
     });
-
   }
 
   cancelGame() {

@@ -32,9 +32,7 @@ export default class Sudoku extends Component {
     if (this.props.restoring) {
       // Reading from storage
       Util.fetchData('progress', (err, result) => {
-        console.log('1',result.sudok);
         if (result.sudoku) {
-          console.log(result.sudoku);
           this.setState({
             sudoku: result.sudoku,
             prefilledArr: result.prefilledArr,
@@ -55,7 +53,6 @@ export default class Sudoku extends Component {
     if (nextProps.restoring) {
       // Reading from storage
       Util.fetchData('progress', (err, result) => {
-        console.log('3',result);
         if (result.sudoku) {
           this.setState({
             sudoku: result.sudoku,
@@ -325,7 +322,7 @@ export default class Sudoku extends Component {
         ))}
       </View>
     ))
-    : (<View><Text>Loading...</Text></View>);
+    : (<View style={style.row}><Text>Loading...</Text></View>);
 
 
     return (
