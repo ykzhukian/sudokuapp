@@ -29,6 +29,20 @@ module.exports = StyleSheet.create({
     zIndex: 3
   },
 
+  loading: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    flexDirection: 'row',
+    zIndex: 3,
+    justifyContent: 'center',
+  },
+
+  loadingText: {
+    color: colors.colors.white,
+		fontSize: 24
+  },
+
   clear: {
     marginTop: 50
   },

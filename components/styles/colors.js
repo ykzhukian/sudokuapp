@@ -19,7 +19,7 @@ var colors = {
 	yellowShadow: '#D6C066',
 	orange: '#F4BA5C',
 	orangeShadow: '#CC9438',
-	darkGreen: '#'
+	white: '#fff'
 };
 
 

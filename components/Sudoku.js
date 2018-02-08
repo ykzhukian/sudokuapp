@@ -322,7 +322,7 @@ export default class Sudoku extends Component {
         ))}
       </View>
     ))
-    : (<View style={style.row}><Text>Loading...</Text></View>);
+    : (<View style={style.loading}><Text style={style.loadingText}>Loading...</Text></View>);
 
 
     return (
