@@ -3,6 +3,7 @@ import { Font } from 'expo';
 
 import Sudoku from './Sudoku';
 import IndexButton from './IndexButton';
+import Loading from './Loading';
 
 import { 
   StyleSheet, 
@@ -181,13 +182,16 @@ export default class Index extends Component {
     null
     ;
 
+    // return (
+    //   <View style={style.container}>
+    //     <StatusBar barStyle="light-content" />
+    //     {this.state.fontLoaded ? content : null}
+    //     {bg}
+    //   </View>
+    // );
     return (
-      <View style={style.container}>
-        <StatusBar barStyle="light-content" />
-        {this.state.fontLoaded ? content : null}
-        {bg}
-      </View>
-    );
+      <Loading />
+    )
   }
 }
 

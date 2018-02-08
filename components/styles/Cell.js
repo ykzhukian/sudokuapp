@@ -66,7 +66,7 @@ module.exports = StyleSheet.create({
   cellText: {
     fontSize: 20,
     fontFamily: 'Dosis',
-    color: '#fff'
+    color: colors.colors.white
   },
   lightCell: { 
     backgroundColor: colors.colors.lightButton,
