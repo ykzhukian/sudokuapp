@@ -7,6 +7,7 @@ import Cell from './Cell';
 import ControlButton from './ControlButton';
 import InputModal from './InputModal';
 import RestoreList from './RestoreList';
+import Loading from './Loading';
 import { Font } from 'expo';
 
 
@@ -323,7 +324,7 @@ export default class Sudoku extends Component {
         ))}
       </View>
     ))
-    : (<View style={style.loading}><Text style={style.loadingText}>Loading...</Text></View>);
+    : (<Loading />);
 
 
     return (

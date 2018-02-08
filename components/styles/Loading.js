@@ -19,6 +19,7 @@ module.exports = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 3
   }, 
 
   buttonWrapper: {

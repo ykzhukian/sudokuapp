@@ -180,18 +180,14 @@ export default class Index extends Component {
     )
     :
     null
-    ;
 
-    // return (
-    //   <View style={style.container}>
-    //     <StatusBar barStyle="light-content" />
-    //     {this.state.fontLoaded ? content : null}
-    //     {bg}
-    //   </View>
-    // );
     return (
-      <Loading />
-    )
+      <View style={style.container}>
+        <StatusBar barStyle="light-content" />
+        {this.state.fontLoaded ? content : null}
+        {bg}
+      </View>
+    );
   }
 }
 
