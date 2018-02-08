@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert, Dimensions, Im
 import Util from '../helpers/Util';
 
 import Cell from './Cell';
+import ControlButton from './ControlButton';
 import InputModal from './InputModal';
 import RestoreList from './RestoreList';
 import { Font } from 'expo';
@@ -329,14 +330,7 @@ export default class Sudoku extends Component {
       <View style={style.container} >
 
         <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
-          <TouchableWithoutFeedback
-            style={style.clear}
-            onPress={() => this.props.cancelGame()}
-            >
-            <View style={style.clearWrapper} >
-              <Image style={style.clearImage} source={require('../assets/img/arrow.png')} />
-            </View>
-          </TouchableWithoutFeedback>
+          <ControlButton buttonFunction={() => this.props.cancelGame()} icon={require('../assets/img/arrow.png')} />
 
           {
             this.state.fontLoaded ? (
@@ -344,14 +338,7 @@ export default class Sudoku extends Component {
             ) : null
           }
 
-          <TouchableWithoutFeedback
-            style={style.clear}
-            onPress={() => this.clear()}
-            >
-            <View style={style.clearWrapper} >
-              <Image style={style.clearImage} source={require('../assets/img/clear.png')} />
-            </View>
-          </TouchableWithoutFeedback>
+          <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
         </View>
 
         <View style={[style.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>

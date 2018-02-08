@@ -43,10 +43,6 @@ module.exports = StyleSheet.create({
 		fontSize: 24
   },
 
-  clear: {
-    marginTop: 50
-  },
-
   active: {
     textDecorationLine: 'underline'
   },
@@ -78,20 +74,6 @@ module.exports = StyleSheet.create({
 		flexDirection: 'row', 
 		maxHeight: 100,
 		justifyContent: 'space-between',
-	},
-
-	clearWrapper: {
-		backgroundColor: colors.colors.board,
-		height: 50,
-		width: 50,
-		borderRadius: 4,
-		alignItems: 'center',
-		justifyContent: 'center'
-	},
-
-	clearImage: {
-		height: 50,
-		width: 50,
 	},
 
 	title: {
