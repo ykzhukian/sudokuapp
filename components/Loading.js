@@ -15,20 +15,25 @@ export default class Loading extends Component {
       pressed: false
     }
 
-    this.animateValue = new Animated.Value(0);
+    this.animateValue = []
+
+    for (var i = 'loading'.length - 1; i >= 0; i--) {
+      let animateValue = new Animated.Value(0);
+      this.animateValue.push(animateValue)
+    }
   }
 
-  animate() {
-    this.animateValue.setValue(0);
+  animate(index) {
+    this.animateValue[index].setValue(0);
     Animated.timing(
-      this.animateValue,
+      this.animateValue[index],
       {
         toValue: 1,
         duration: 1000,
         easing: Easing.linear,
-        delay: 3000
+        // delay: 3000
       }
-    ).start(() => this.animate())
+    ).start(() => this.animate(index))
   }
 
   async componentDidMount() {
@@ -39,20 +44,29 @@ export default class Loading extends Component {
     //Setting the state to true when font is loaded.
     this.setState({ fontLoaded: true });
 
-    this.animate();
+    for (var i = 'loading'.length - 1; i >= 0; i--) {
+      
+    }
+    setTimeout(() => this.animate(0), 3000)
+
   }
 
   render() {
 
-    const marginTop = this.animateValue.interpolate({
-      inputRange: [0, 0.5, 1],
-      outputRange: [0, 4, 0]
-    })
+    let margin = []
+
+    for (var i = 'loading'.length - 1; i >= 0; i--) {
+      let marginTop = this.animateValue[0].interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: [0, 4, 0]
+      });
+      margin.push(margin);
+    }
 
     return (
       <View style={style.bg} >
         <View style={style.buttonWrapper} >
-          <Animated.View style={[style.button, {marginTop}]} >
+          <Animated.View style={[style.button, margin[0]]} >
             {this.state.fontLoaded ? (<Text style={style.buttonText} >L</Text>) : null}
             <View style={style.buttonReflection} ></View>
             <View style={style.buttonReflectionRound} ></View>
