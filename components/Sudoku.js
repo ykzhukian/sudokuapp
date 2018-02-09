@@ -10,6 +10,7 @@ import RestoreList from './RestoreList';
 import Loading from './Loading';
 import { Font } from 'expo';
 import Swiper from 'react-native-swiper';
+import SavedProgress from './SavedProgress';
 
 
 const style = require('./styles/Sudoku');
@@ -328,18 +329,17 @@ export default class Sudoku extends Component {
     : (<Loading />);
 
 
-    return (  
+    return (
       <Swiper loop={false} showsPagination={false} >
 
         <View style={style.container} >
           <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
             <ControlButton buttonFunction={() => this.props.cancelGame()} icon={require('../assets/img/arrow.png')} />
-            {
-              this.state.fontLoaded ? (
-                <Text style={style.title}>Simple</Text>
-              ) : null
-            }
-            <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 170}}>
+              <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
+              <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
+              <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
+            </View>
           </View>
 
           <View style={[style.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>
@@ -356,7 +356,7 @@ export default class Sudoku extends Component {
         </View>
 
         <View>
-          <Text>Saved Progress!</Text>
+          <SavedProgress />
         </View>
 
       </Swiper>
