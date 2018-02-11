@@ -42,10 +42,14 @@ export default class MessageModalButton extends Component {
       	onPressIn={() => this.pressIn()}
         onPressOut={() => this.pressOut()} >
         <View style={style.buttonWrapper}>
-        	<View style={[style.button, (this.state.pressed? {bottom: -5} : [])]} >
-        		{this.state.fontLoaded? (<Text style={style.messageText}>Confirm</Text>) : null}
+        	<View style={[
+            style.button, 
+            (this.state.pressed? {bottom: -5} : []),
+            (this.props.cancel? style.cancel : [])
+          ]} >
+        		{this.state.fontLoaded? (<Text style={style.messageText}>{this.props.cancel? 'Cancel' : 'Confirm'}</Text>) : null}
         	</View>
-        	<View style={style.buttonShadow}></View>
+        	<View style={[style.buttonShadow, (this.props.cancel? style.cancelShadow : [])]}></View>
         	<View style={[style.reflection, (this.state.pressed? {top: 7} : [])]} ></View>
         	<View style={[style.reflectionLarge, (this.state.pressed? {top: 7} : [])]} ></View>
         	<View style={[style.reflectionRound, (this.state.pressed? {top: 7} : [])]} ></View>

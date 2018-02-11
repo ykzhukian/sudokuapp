@@ -30,8 +30,8 @@ export default class MessageModal extends Component {
       <View style={[style.container, {width: Util.deviceWidth()}]} >
         {this.state.fontLoaded? (<Text style={style.messageText}>Do you want to leave the current game?</Text>) : null}
         <View style={style.buttonsWrapper} >
-          <MessageModalButton />
-          <MessageModalButton />
+          <MessageModalButton cancel={false} />
+          <MessageModalButton cancel={true} />
         </View>
       </View>
     );

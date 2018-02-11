@@ -97,4 +97,12 @@ module.exports = StyleSheet.create({
     borderRadius: 3,
   },
 
+  cancel: {
+    backgroundColor: colors.colors.error
+  },
+
+  cancelShadow: {
+    backgroundColor: colors.colors.errorShadow
+  }
+
 });
