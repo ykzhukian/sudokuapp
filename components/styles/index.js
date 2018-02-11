@@ -63,10 +63,10 @@ module.exports = StyleSheet.create({
 
 	buttonReflection: {
 		position: 'absolute',
-		width: '95%',
+		width: '96%',
 		backgroundColor: colors.colors.white,
-		top: 5,
-		height: 30,
+		top: 2,
+		height: '50%',
 		borderRadius: 3,
 		opacity: 0.2
 	},
@@ -76,20 +76,19 @@ module.exports = StyleSheet.create({
 		width: 10,
 		height: 5,
 		borderRadius: 3,
-		right: '5%',
-		top: 5,
+		right: '2%',
+		top: 2,
 		backgroundColor: colors.colors.white,
-		marginRight: -5,
 		opacity: 0.3,
 	},
 
 	buttonReflectionLarge: {
 		position: 'absolute',
-		width: 60,
+		width: '50%',
 		height: 5,
 		borderRadius: 3,
 		right: '5%',
-		top: 5,
+		top: 2,
 		backgroundColor: colors.colors.white,
 		marginRight: 8,
 		opacity: 0.3,

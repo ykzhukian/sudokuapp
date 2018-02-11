@@ -46,7 +46,7 @@ export default class SavedProgressCard extends Component {
         onPressOut={() => this.pressOut()} >
         <View style={style.progressWrapper}>
         	<View style={style.cardContainer} >
-    	      <View style={[style.cardWrapper, (this.state.pressed? {marginTop: 3} : [])]} >
+    	      <View style={[style.cardWrapper, (this.state.pressed? {marginTop: 5} : [])]} >
     	        <View style={style.card} >
     	        	{ this.state.fontLoaded ? (
                     <Text style={style.cardText} >19:32      14 SEP</Text>
