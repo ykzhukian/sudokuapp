@@ -26,26 +26,41 @@ export default class SavedProgressCard extends Component {
     this.setState({ fontLoaded: true });
   }
 
+  pressIn() {
+    this.setState({
+      pressed: true
+    })
+  }
+
+  pressOut() {
+    this.setState({
+      pressed: false
+    })
+  }
+
   render() {
 
-
     return (
-      <View style={style.progressWrapper}>
-      	<View style={style.cardContainer} >
-  	      <View style={style.cardWrapper} >
-  	        <View style={style.card} >
-  	        	{ this.state.fontLoaded ? (
-                  <Text style={style.cardText} >Saved Time: Sep 14th 7:32</Text>
-                ) : null }
-  	        </View>
-  	        <View style={style.cardReflectionRound} ></View>
-  	        <View style={style.cardReflectionLarge} ></View>
-  	        <View style={style.cardReflection} ></View>
-  	      </View>
-          <View style={style.cardShadow} ></View>  
+      <TouchableWithoutFeedback
+        onPressIn={() => this.pressIn()}
+        onPressOut={() => this.pressOut()} >
+        <View style={style.progressWrapper}>
+        	<View style={style.cardContainer} >
+    	      <View style={[style.cardWrapper, (this.state.pressed? {marginTop: 3} : [])]} >
+    	        <View style={style.card} >
+    	        	{ this.state.fontLoaded ? (
+                    <Text style={style.cardText} >19:32      14 SEP</Text>
+                  ) : null }
+    	        </View>
+    	        <View style={style.cardReflectionRound} ></View>
+    	        <View style={style.cardReflectionLarge} ></View>
+    	        <View style={style.cardReflection} ></View>
+    	      </View>
+            <View style={[style.cardShadow, (this.state.pressed? {marginTop: -20} : [])]} ></View>  
+          </View>
+          <ControlButton icon={require('../assets/img/delete.png')} />
         </View>
-        <ControlButton icon={require('../assets/img/clear.png')} />
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

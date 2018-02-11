@@ -34,6 +34,8 @@ export default class SavedProgress extends Component {
           <Text style={style.savedProgressTitle} >Time Bank</Text>
         ) : null }
         <SavedProgressCard />
+        <SavedProgressCard />
+        <SavedProgressCard />
       </View>
     );
   }

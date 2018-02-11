@@ -16,6 +16,7 @@ module.exports = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-around',
     flexDirection: 'row',
+    marginBottom: 15,
   },
 
 	wrapper: {
