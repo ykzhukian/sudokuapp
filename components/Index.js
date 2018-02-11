@@ -98,21 +98,12 @@ export default class Index extends Component {
   }
 
   cancelGame() {
-    Alert.alert(
-        'Warning',
-        'It will lose the progress and start a new game.',
-        [
-          {text: 'Go on', onPress: () => {
-            this.setState({
-              difficulty: 0,
-              win: false,
-              playing: false
-            })
-            Util.storeData('difficulty', {difficulty: 0})
-          }},
-          {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
-        ]
-    )
+    this.setState({
+      difficulty: 0,
+      win: false,
+      playing: false
+    })
+    Util.storeData('difficulty', {difficulty: 0})
   }
 
   win() {

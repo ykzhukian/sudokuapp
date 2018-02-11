@@ -30,6 +30,7 @@ export default class Sudoku extends Component {
      errors: [],
      flags: [],
      highlight: {},
+     modal: false,
     }
   }
 
@@ -187,30 +188,50 @@ export default class Sudoku extends Component {
   }
 
   clear() {
+    let currentSudoku = this.state.currentSudoku;
+    currentSudoku.forEach((row, rowIndex) => {
+      row.forEach((value, index) => {
+        if (
+            !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) &&
+            !Util.checkDuplicate(this.state.flags, [rowIndex, index])
+          ) {
+          currentSudoku[rowIndex][index] = ''; 
+        }
+      })
+    });
+    let errors = Util.verifyValue(currentSudoku);
+    this.setState({
+      currentSudoku: currentSudoku,
+      errors: errors,
+      modal: false
+    }, () => {
+      Util.storeData('progress', {
+        currentSudoku: currentSudoku,
+        errors: errors
+      });
+    });
+  }
 
-    this.refs.clear.open()
+  clearModal() {
+    this.setState({
+      confirmFunction: 'clear',
+      messageModalText: 'Do you want to reset the current game?',
+      modal: true
+    });
+  }
 
-    // let currentSudoku = this.state.currentSudoku;
-    // currentSudoku.forEach((row, rowIndex) => {
-    //   row.forEach((value, index) => {
-    //     if (
-    //         !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) &&
-    //         !Util.checkDuplicate(this.state.flags, [rowIndex, index])
-    //       ) {
-    //       currentSudoku[rowIndex][index] = ''; 
-    //     }
-    //   })
-    // });
-    // let errors = Util.verifyValue(currentSudoku);
-    // this.setState({
-    //   currentSudoku: currentSudoku,
-    //   errors: errors
-    // }, () => {
-    //   Util.storeData('progress', {
-    //     currentSudoku: currentSudoku,
-    //     errors: errors
-    //   });
-    // });
+  cancelGame() {
+    this.setState({
+      confirmFunction: 'close',
+      messageModalText: 'Do you want to leave the current game?',
+      modal: true
+    });
+  }
+
+  cancel() {
+    this.setState({
+      modal: false
+    });
   }
 
   addFlag(position) {
@@ -331,15 +352,16 @@ export default class Sudoku extends Component {
     ))
     : (<Loading />);
 
-    const modal = (
+    const modal = this.state.modal? (
       <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 999, justifyContent:'center',alignItems: 'center'}}>
         <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 99, backgroundColor: '#000', opacity: 0.6}}></View>
         <MessageModal 
-          confirmFunction={() => {this.confirmFunction()}} 
+          confirmFunction={() => this.confirmFunction()} 
+          cancelFunction={() => this.cancel()}
           message={this.state.messageModalText}
           />
       </View>
-    );
+    ) : null;
 
 
     return (
@@ -347,11 +369,12 @@ export default class Sudoku extends Component {
 
         <View style={style.container} >
           <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
-            <ControlButton buttonFunction={() => this.props.cancelGame()} icon={require('../assets/img/close.png')} />
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 170}}>
-              <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
-              <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
-              <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
+            <ControlButton buttonFunction={() => this.cancelGame()} icon={require('../assets/img/close.png')} />
+            <ControlButton buttonFunction={() => this.clearModal()} icon={require('../assets/img/clear.png')} />
+
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
+              <ControlButton buttonFunction={() => this.clearModal()} icon={require('../assets/img/hint.png')} />
+              <ControlButton buttonFunction={() => this.clearModal()} icon={require('../assets/img/save.png')} />
             </View>
           </View>
 

@@ -37,7 +37,7 @@ export default class MessageModalButton extends Component {
 
   onPress() {
     if (this.props.cancel) {
-
+      this.props.cancelFunction();
     } else {
       this.props.confirmFunction();
     }
