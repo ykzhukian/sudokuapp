@@ -28,10 +28,10 @@ export default class MessageModal extends Component {
 
     return (
       <View style={[style.container, {width: Util.deviceWidth()}]} >
-        {this.state.fontLoaded? (<Text style={style.messageText}>Do you want to leave the current game?</Text>) : null}
+        {this.state.fontLoaded? (<Text style={style.messageText}>{this.props.message}</Text>) : null}
         <View style={style.buttonsWrapper} >
-          <MessageModalButton cancel={false} />
-          <MessageModalButton cancel={true} />
+          <MessageModalButton confirmFunction={this.props.confirmFunction} cancel={false} />
+          <MessageModalButton confirmFunction={this.props.confirmFunction} cancel={true} />
         </View>
       </View>
     );

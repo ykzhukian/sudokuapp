@@ -27,7 +27,7 @@ module.exports = StyleSheet.create({
 
   cardWrapper: {
     width: '100%',
-    backgroundColor: colors.colors.flag,
+    backgroundColor: colors.colors.lightButton,
     borderRadius: 4,
     position: 'relative',
     zIndex: 1,
@@ -56,7 +56,7 @@ module.exports = StyleSheet.create({
     height: 20,
     position: 'relative',
     marginTop: -15,
-    backgroundColor: colors.colors.flagShadow,
+    backgroundColor: colors.colors.lightButtonShadow,
     borderRadius: 4,
     alignItems: 'center',
   },

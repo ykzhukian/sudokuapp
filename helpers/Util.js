@@ -269,42 +269,6 @@ const Mixin = {
     return array;
   },
 
-  confirm(msg, callback) { /*change*/
-    var $content =  "<div class='dialog-confirm'>" +
-                         "<h3 class='dialog-confirm-title'> " + msg + " </h3>" +
-                         "<div class='controls'>" +
-                             " <div class='doAction'>Go On</div> " +
-                             " <div class='cancelAction'>Cancel</div> " +
-                         "</div>" +
-                    "</div>";
-    $($content).prependTo('#container').hide().slideDown(200);
-    $('.doAction').click(function () {
-        callback();
-        $(this).parents('.dialog-confirm').slideUp(100, function () {
-          $(this).remove();
-        });
-    });
-    $('.cancelAction').click(function () {
-        $(this).parents('.dialog-confirm').slideUp(100, function () {
-          $(this).remove();
-        });
-    });
-      
-   },
-
-  message(msg) { /*change*/
-    const $content =  "<div class='dialog-confirm dialog-message'>" +
-                     "<h3 class='dialog-confirm-title'> " + msg + " </h3>" +
-                "</div>";
-                // $( "#toggle" ).toggle( "bounce", { times: 3 }, "slow" );
-    $($content).prependTo('#container').hide().slideDown(200).delay(3000).slideUp(300);
-
-    setTimeout(function() {
-      $( ".dialog-message" ).remove();
-    }, 3500);
-    
-  },
-
   formatDate(timestamp) {
     const date = new Date(timestamp);
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];

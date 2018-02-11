@@ -18,7 +18,8 @@ module.exports = StyleSheet.create({
     borderRadius: 4,
     padding: 20,
     backgroundColor: colors.colors.darkButtonShadow,
-
+    position: 'absolute',
+    zIndex: 999
   },
 
   messageText: {

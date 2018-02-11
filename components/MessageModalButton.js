@@ -35,12 +35,21 @@ export default class MessageModalButton extends Component {
     })
   }
 
+  onPress() {
+    if (this.props.cancel) {
+
+    } else {
+      this.props.confirmFunction();
+    }
+  }
+
   render() {
 
     return (
       <TouchableWithoutFeedback
       	onPressIn={() => this.pressIn()}
-        onPressOut={() => this.pressOut()} >
+        onPressOut={() => this.pressOut()} 
+        onPress={() => this.onPress()} >
         <View style={style.buttonWrapper}>
         	<View style={[
             style.button, 

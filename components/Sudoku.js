@@ -11,7 +11,8 @@ import Loading from './Loading';
 import { Font } from 'expo';
 import Swiper from 'react-native-swiper';
 import SavedProgress from './SavedProgress';
-
+import MessageModal from './MessageModal';
+import Modal from 'react-native-modalbox';
 
 const style = require('./styles/Sudoku');
 
@@ -28,7 +29,7 @@ export default class Sudoku extends Component {
      prefilledArr: '',
      errors: [],
      flags: [],
-     highlight: {}
+     highlight: {},
     }
   }
 
@@ -186,36 +187,30 @@ export default class Sudoku extends Component {
   }
 
   clear() {
-    Alert.alert(
-        'Warning',
-        'Cannot recover, sure?',
-        [
-            {text: 'Sure', onPress: () => {
-              let currentSudoku = this.state.currentSudoku;
-              currentSudoku.forEach((row, rowIndex) => {
-                row.forEach((value, index) => {
-                  if (
-                      !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) &&
-                      !Util.checkDuplicate(this.state.flags, [rowIndex, index])
-                    ) {
-                    currentSudoku[rowIndex][index] = ''; 
-                  }
-                })
-              });
-              let errors = Util.verifyValue(currentSudoku);
-              this.setState({
-                currentSudoku: currentSudoku,
-                errors: errors
-              }, () => {
-                Util.storeData('progress', {
-                  currentSudoku: currentSudoku,
-                  errors: errors
-                });
-              });
-            }},
-            {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
-        ]
-    )
+
+    this.refs.clear.open()
+
+    // let currentSudoku = this.state.currentSudoku;
+    // currentSudoku.forEach((row, rowIndex) => {
+    //   row.forEach((value, index) => {
+    //     if (
+    //         !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) &&
+    //         !Util.checkDuplicate(this.state.flags, [rowIndex, index])
+    //       ) {
+    //       currentSudoku[rowIndex][index] = ''; 
+    //     }
+    //   })
+    // });
+    // let errors = Util.verifyValue(currentSudoku);
+    // this.setState({
+    //   currentSudoku: currentSudoku,
+    //   errors: errors
+    // }, () => {
+    //   Util.storeData('progress', {
+    //     currentSudoku: currentSudoku,
+    //     errors: errors
+    //   });
+    // });
   }
 
   addFlag(position) {
@@ -294,6 +289,14 @@ export default class Sudoku extends Component {
     });
   }
 
+  confirmFunction() {
+    if (this.state.confirmFunction === 'clear') {
+      this.clear()
+    } else if (this.state.confirmFunction === 'close') {
+      this.props.cancelGame()
+    }
+  }
+
 
   render() {
 
@@ -328,13 +331,23 @@ export default class Sudoku extends Component {
     ))
     : (<Loading />);
 
+    const modal = (
+      <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 999, justifyContent:'center',alignItems: 'center'}}>
+        <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 99, backgroundColor: '#000', opacity: 0.6}}></View>
+        <MessageModal 
+          confirmFunction={() => {this.confirmFunction()}} 
+          message={this.state.messageModalText}
+          />
+      </View>
+    );
+
 
     return (
       <Swiper loop={false} showsPagination={false} >
 
         <View style={style.container} >
           <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
-            <ControlButton buttonFunction={() => this.props.cancelGame()} icon={require('../assets/img/arrow.png')} />
+            <ControlButton buttonFunction={() => this.props.cancelGame()} icon={require('../assets/img/close.png')} />
             <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 170}}>
               <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
               <ControlButton buttonFunction={() => this.clear()} icon={require('../assets/img/clear.png')} />
@@ -353,6 +366,8 @@ export default class Sudoku extends Component {
             selected={this.state.selected.row || this.state.selected.row === 0 ? this.state.currentSudoku[this.state.selected.row][this.state.selected.col] : ''}
             hideInput={() => this.hideInputModal()} 
             update={(val) => this.update(val)} />
+
+          {modal}
         </View>
 
         <View>
