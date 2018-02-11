@@ -24,9 +24,9 @@ export default class LoadingButton extends Component {
       this.animateValue,
       {
         toValue: 1,
-        duration: 300,
+        duration: 200,
         easing: Easing.linear,
-        delay: 150 * this.props.order
+        delay: 100 * this.props.order
       }
     ).start()
   }
@@ -40,7 +40,7 @@ export default class LoadingButton extends Component {
     this.setState({ fontLoaded: true });
 
     this.animate();
-    setInterval(() => this.animate(), 150 * 7);
+    setInterval(() => this.animate(), 100 * 7);
   }
 
   render() {

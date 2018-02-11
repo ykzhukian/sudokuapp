@@ -31,7 +31,7 @@ export default class SavedProgress extends Component {
     return (
       <View style={style.wrapper} >
         { this.state.fontLoaded ? (
-          <Text style={style.savedProgressTitle} >Saved Progress</Text>
+          <Text style={style.savedProgressTitle} >Time Bank</Text>
         ) : null }
         <SavedProgressCard />
       </View>

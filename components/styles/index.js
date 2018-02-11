@@ -152,6 +152,19 @@ module.exports = StyleSheet.create({
 		position: 'absolute',
 		top: 25,
 		start: 0
-	}
+	},
+
+	loadingWrapper: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 999,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    
+  }
 
 });

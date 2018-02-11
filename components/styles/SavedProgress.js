@@ -12,6 +12,12 @@ var colors = require('./colors');
 
 module.exports = StyleSheet.create({
 
+  progressWrapper: {
+    width: '100%',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+  },
+
 	wrapper: {
     width: '100%',
     height: '100%',
@@ -19,20 +25,25 @@ module.exports = StyleSheet.create({
   },
 
   cardWrapper: {
-    width: '90%',
-    backgroundColor: colors.colors.orange,
+    width: '100%',
+    backgroundColor: colors.colors.flag,
     borderRadius: 4,
     position: 'relative',
     zIndex: 1,
+    height: 50,
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
 
   card: {
     padding: 10,
-    
+    flexDirection: 'column',
+    justifyContent: 'center',
+    paddingLeft: 20,
   },
 
   cardContainer: {
-    width: '90%',
+    width: '80%',
     borderRadius: 4,
     position: 'relative',
     zIndex: 1,
@@ -40,11 +51,11 @@ module.exports = StyleSheet.create({
   },
 
   cardShadow: {
-    width: '90%',
+    width: '100%',
     height: 20,
     position: 'relative',
     marginTop: -17,
-    backgroundColor: colors.colors.orangeShadow,
+    backgroundColor: colors.colors.flagShadow,
     borderRadius: 4,
     alignItems: 'center',
   },
@@ -54,7 +65,7 @@ module.exports = StyleSheet.create({
     width: '50%',
     height: 5,
     backgroundColor: colors.colors.white,
-    right: 12,
+    right: 16,
     top: 3,
     borderRadius: 4,
     opacity: 0.2,
@@ -63,7 +74,7 @@ module.exports = StyleSheet.create({
 
   cardReflectionRound: {
     position: 'absolute',
-    width: 5,
+    width: 8,
     height: 5,
     backgroundColor: colors.colors.white,
     right: '1%',
@@ -88,6 +99,8 @@ module.exports = StyleSheet.create({
   cardText: {
     fontFamily: 'Dosis',
     color: colors.colors.white,
+    fontSize: 18,
+
   },
 
   savedProgressTitle: {
@@ -99,9 +112,7 @@ module.exports = StyleSheet.create({
 
   },
 
-  cardBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
+
+
 
 });

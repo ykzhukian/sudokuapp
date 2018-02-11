@@ -31,7 +31,8 @@ export default class Index extends Component {
     this.state = {
       difficulty: 0,
       win: false,
-      playing: false
+      playing: false,
+      loading: false,
     };
     this.animateValue = new Animated.Value(0);
     this.animateSlowValue = new Animated.Value(0);
@@ -62,10 +63,16 @@ export default class Index extends Component {
   }
 
   selectDifficulty(value) {
+    this.setState({loading: true})
     this.setState({
       difficulty: value,
       win: false,
-    }, () => { Util.storeData('difficulty', {difficulty: value}) } );
+    }, () => { 
+      Util.storeData('difficulty', {difficulty: value}) 
+      setTimeout(() => {
+        this.setState({loading: false})
+      }, 500)
+    });
   }
 
   async componentDidMount() {
@@ -137,39 +144,40 @@ export default class Index extends Component {
       outputRange: [0, -10, 0]
     })
 
-    const content = this.state.difficulty === 0 && !this.state.playing
-    ?
-    (
-      <View style={style.wrapper} >
-        <View style={style.titleWrapper} >
-          <Text style={style.title} >Sudoku</Text>
-          <Text style={[style.title, style.titleShadow]} >Sudoku</Text>
+    let content = null;
+
+    if (this.state.difficulty === 0 && !this.state.playing) {
+      content =  (
+        <View style={style.wrapper} >
+          <View style={style.titleWrapper} >
+            <Text style={style.title} >Sudoku</Text>
+            <Text style={[style.title, style.titleShadow]} >Sudoku</Text>
+          </View>
+          <IndexButton 
+            text={'Simple'} 
+            value={45} 
+            color={'green'}
+            selectDifficulty={(val) => this.selectDifficulty(val)} />
+          <IndexButton 
+            text={'Intermediate'} 
+            value={35} 
+            color={'yellow'}
+            selectDifficulty={(val) => this.selectDifficulty(val)} />
+          <IndexButton 
+            text={'Hard'} 
+            value={25} 
+            color={'orange'}
+            selectDifficulty={(val) => this.selectDifficulty(val)} />
+          <IndexButton 
+            text={'Challenging'} 
+            value={17} 
+            color={'red'}
+            selectDifficulty={(val) => this.selectDifficulty(val)} />
         </View>
-        <IndexButton 
-          text={'Simple'} 
-          value={45} 
-          color={'green'}
-          selectDifficulty={(val) => this.selectDifficulty(val)} />
-        <IndexButton 
-          text={'Intermediate'} 
-          value={35} 
-          color={'yellow'}
-          selectDifficulty={(val) => this.selectDifficulty(val)} />
-        <IndexButton 
-          text={'Hard'} 
-          value={25} 
-          color={'orange'}
-          selectDifficulty={(val) => this.selectDifficulty(val)} />
-        <IndexButton 
-          text={'Challenging'} 
-          value={17} 
-          color={'red'}
-          selectDifficulty={(val) => this.selectDifficulty(val)} />
-      </View>
-    )
-    :
-    (<Sudoku restoring={this.state.playing} prefilled={this.state.difficulty} cancelGame={() => this.cancelGame()} />)
-    ;
+      )
+    } else {
+      content = (<Sudoku restoring={this.state.playing} prefilled={this.state.difficulty} cancelGame={() => this.cancelGame()} />)
+    }
 
     const bg = (this.state.difficulty === 0 && !this.state.playing) ? 
     ( 
@@ -181,21 +189,29 @@ export default class Index extends Component {
     </View>
     )
     :
+    null;
+
+    const loading = this.state.loading?
+    (<View style={style.loadingWrapper}>
+      <Loading />
+    </View>)
+    :
     null
 
-    return (
-      <View style={style.container}>
-        <StatusBar barStyle="light-content" />
-        {this.state.fontLoaded ? content : null}
-        {bg}
-      </View>
-    );
-    // return (<Loading></Loading>)
     // return (
     //   <View style={style.container}>
-    //     <SavedProgress />
+    //     <StatusBar barStyle="light-content" />
+    //     {this.state.fontLoaded && !this.state.loading ? content : null}
+    //     {bg}
+    //     {loading}
     //   </View>
-    // )
+    // );
+    // return (<Loading></Loading>)
+    return (
+      <View style={style.container}>
+        <SavedProgress />
+      </View>
+    )
   }
 }
 

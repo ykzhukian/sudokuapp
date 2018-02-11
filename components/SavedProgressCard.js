@@ -5,6 +5,7 @@ import { Font } from 'expo';
 const style = require('./styles/SavedProgress');
 
 import Util from '../helpers/Util';
+import ControlButton from './ControlButton';
 
 
 export default class SavedProgressCard extends Component {
@@ -29,22 +30,21 @@ export default class SavedProgressCard extends Component {
 
 
     return (
-    	<View style={style.cardContainer} >
-	      <View style={style.cardWrapper} >
-	        <View style={style.card} >
-	        	<View style={style.cardBar} >
-							{ this.state.fontLoaded ? (
-			            <Text style={style.cardText} >Saved Time: Sep 14th 7:32</Text>
-			          ) : null }
-							<View style={style.deleteButton} ><Text style={{color: 'white'}}>x</Text></View>
-						</View>
-						<View style={{height: 40}} ></View>
-	        </View>
-	        <View style={style.cardReflectionRound} ></View>
-	        <View style={style.cardReflectionLarge} ></View>
-	        <View style={style.cardReflection} ></View>
-	      </View>
-        <View style={style.cardShadow} ></View>  
+      <View style={style.progressWrapper}>
+      	<View style={style.cardContainer} >
+  	      <View style={style.cardWrapper} >
+  	        <View style={style.card} >
+  	        	{ this.state.fontLoaded ? (
+                  <Text style={style.cardText} >Saved Time: Sep 14th 7:32</Text>
+                ) : null }
+  	        </View>
+  	        <View style={style.cardReflectionRound} ></View>
+  	        <View style={style.cardReflectionLarge} ></View>
+  	        <View style={style.cardReflection} ></View>
+  	      </View>
+          <View style={style.cardShadow} ></View>  
+        </View>
+        <ControlButton icon={require('../assets/img/clear.png')} />
       </View>
     );
   }
