@@ -155,19 +155,10 @@ export default class Sudoku extends Component {
   }
 
   delete(id) {
-    Alert.alert(
-        'Deleting',
-        'Cannot recover, sure?',
-        [
-            {text: 'Go on', onPress: () => {
-              var saved = this.state.saved.filter(function(el) { return el.id != id; }); 
-              this.setState({
-                saved: saved
-              })
-            }},
-            {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
-        ]
-    )
+    var saved = this.state.saved.filter(function(el) { return el.id != id; }); 
+    this.setState({
+      saved: saved
+    })
   }
 
   restore(sudoku) {
