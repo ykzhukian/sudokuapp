@@ -113,7 +113,9 @@ module.exports = StyleSheet.create({
 
   },
 
-
+  previewWrapper: {
+    height: '100%',
+  }
 
 
 });

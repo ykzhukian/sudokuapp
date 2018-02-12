@@ -7,6 +7,7 @@ import IndexButton from './IndexButton';
 import Loading from './Loading';
 import SavedProgress from './SavedProgress';
 import MessageModal from './MessageModal';
+import SavedProgressPreview from './SavedProgressPreview';
 
 import { 
   StyleSheet, 
@@ -199,11 +200,7 @@ export default class Index extends Component {
       </View>
     );
     // return (<Loading></Loading>)
-    // return (
-    //   <View style={style.container}>
-    //     <MessageModal />
-    //   </View>
-    // )
+    
   }
 }
 

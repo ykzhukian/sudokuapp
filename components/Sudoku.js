@@ -31,6 +31,7 @@ export default class Sudoku extends Component {
      flags: [],
      highlight: {},
      modal: false,
+     saved: []
     }
   }
 
@@ -153,7 +154,11 @@ export default class Sudoku extends Component {
     saved.push(toBeSaved);
     this.setState({
       saved: saved
-    })
+    }, () => {
+      Util.storeData('progress', {
+        saved: saved
+      });
+    });
   }
 
   delete(id) {
@@ -391,12 +396,14 @@ export default class Sudoku extends Component {
 
         <View style={style.container} >
           <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
-            <ControlButton buttonFunction={() => this.cancelGame()} icon={require('../assets/img/close.png')} />
-            <ControlButton buttonFunction={() => this.clearModal()} icon={require('../assets/img/clear.png')} />
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
+              <ControlButton buttonFunction={() => this.cancelGame()} icon={require('../assets/img/close.png')} />
+              <ControlButton buttonFunction={() => this.clearModal()} icon={require('../assets/img/clear.png')} />
+            </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
               <ControlButton buttonFunction={() => this.clearModal()} icon={require('../assets/img/hint.png')} />
-              <ControlButton buttonFunction={() => this.clearModal()} icon={require('../assets/img/save.png')} />
+              <ControlButton buttonFunction={() => this.save()} icon={require('../assets/img/save.png')} />
             </View>
           </View>
 
@@ -412,16 +419,12 @@ export default class Sudoku extends Component {
             <View style={style.boardShadow}></View>
           </View>
 
-          
-
           {modal}
         </View>
 
         <View>
-          <SavedProgress />
+          <SavedProgress saved={this.state.saved} />
         </View>
-
-
 
       </Swiper>
     );

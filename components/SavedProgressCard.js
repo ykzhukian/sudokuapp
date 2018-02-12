@@ -13,7 +13,7 @@ export default class SavedProgressCard extends Component {
 	constructor(props) {
     super(props)
     this.state = {
-      
+      sudoku: this.props.sudoku
     };
   }
 
@@ -43,7 +43,8 @@ export default class SavedProgressCard extends Component {
     return (
       <TouchableWithoutFeedback
         onPressIn={() => this.pressIn()}
-        onPressOut={() => this.pressOut()} >
+        onPressOut={() => this.pressOut()}
+        onPress={() => this.props.openPreview(this.props.sudoku)} >
         <View style={style.progressWrapper}>
         	<View style={style.cardContainer} >
     	      <View style={[style.cardWrapper, (this.state.pressed? {marginTop: 5} : [])]} >
