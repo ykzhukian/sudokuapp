@@ -61,8 +61,9 @@ export default class SavedProgressPreview extends Component {
             <View style={sudokuStyle.boardShadow}></View>
           </View>
         </View>
-        <View style={{position: 'absolute', bottom: 160,}}>
+        <View style={{position: 'absolute', bottom: 180,}}>
           <MessageModal 
+            cancelFunction={() => this.props.closePreview()}
             message={'To go back, you will lose current progress.'}
             />
         </View>

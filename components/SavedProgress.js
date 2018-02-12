@@ -34,6 +34,13 @@ export default class SavedProgress extends Component {
     })
   }
 
+  closePreview() {
+    this.setState({
+      preview: false,
+      sudoku: []
+    })
+  }
+
   render() {
 
     const progressCards = this.props.saved.map((progress, index) => (
@@ -41,16 +48,23 @@ export default class SavedProgress extends Component {
     ));
 
     const progressPreview = this.state.preview?
-    (<View style={{height: '100%', width: Util.deviceWidth(), backgroundColor: '#282956', position: 'absolute', top: 0, right: 20}}><SavedProgressPreview sudoku={this.state.sudoku} /></View>)
+    (<View style={{height: '100%', width: Util.deviceWidth(), backgroundColor: '#282956', position: 'absolute', top: 0, right: 20}}><SavedProgressPreview closePreview={() => this.closePreview()}  sudoku={this.state.sudoku} /></View>)
     : null;
+
+    const progress = !this.state.preview ?
+    (
+      <View style={style.wrapper}>
+      { this.state.fontLoaded ? (
+        <Text style={style.savedProgressTitle} >Time Bank</Text>
+      ) : null }
+      {progressCards}
+      </View>
+    )
+    :(<View style={style.wrapper}>{progressPreview}</View>);
 
     return (
       <View style={style.wrapper} >
-        { this.state.fontLoaded ? (
-          <Text style={style.savedProgressTitle} >Time Bank</Text>
-        ) : null }
-        {progressCards}
-        {progressPreview}
+        {progress}
       </View>
     );
   }
