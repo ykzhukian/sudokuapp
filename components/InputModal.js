@@ -29,7 +29,7 @@ export default class InputModal extends Component {
     // let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
 
     return (
-      <View style={[style.container, {width: Util.deviceWidth()}, (this.props.active? [] : style.buttonDisabled)]}>
+      <View style={[style.container, {width: Util.deviceWidth(), bottom: 30,}, (this.props.active? [] : style.buttonDisabled)]}>
         <View style={style.wrapper}>
           <InputModalButton active={this.props.active} selected={this.props.selected} onPress={(val) => this.onPress(val)} value={1}/>
           <InputModalButton active={this.props.active} selected={this.props.selected} onPress={(val) => this.onPress(val)} value={2}/>

@@ -35,24 +35,7 @@ export default class Sudoku extends Component {
   }
 
   componentWillMount() {
-    if (this.props.restoring) {
-      // Reading from storage
-      Util.fetchData('progress', (err, result) => {
-        if (result.sudoku) {
-          this.setState({
-            sudoku: result.sudoku,
-            prefilledArr: result.prefilledArr,
-            currentSudoku: result.currentSudoku,
-            errors: result.errors,
-            initial: result.inital,
-            saved: result.saved,
-            flags: result.flags
-          })
-        }
-      });
-    } else {
-      this.initialiseSudoku(this.props);
-    }
+    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -85,6 +68,25 @@ export default class Sudoku extends Component {
     });
     //Setting the state to true when font is loaded.
     this.setState({ fontLoaded: true });
+
+    if (this.props.restoring) {
+      // Reading from storage
+      Util.fetchData('progress', (err, result) => {
+        if (result.sudoku) {
+          this.setState({
+            sudoku: result.sudoku,
+            prefilledArr: result.prefilledArr,
+            currentSudoku: result.currentSudoku,
+            errors: result.errors,
+            initial: result.inital,
+            saved: result.saved,
+            flags: result.flags
+          })
+        }
+      });
+    } else {
+      this.initialiseSudoku(this.props);
+    }
   }
 
   initialiseSudoku(props) {
@@ -356,7 +358,36 @@ export default class Sudoku extends Component {
 
 
     return (
-      <Swiper loop={false} showsPagination={false} >
+      <Swiper loop={false} showsPagination={true} 
+        activeDot={
+          (
+            <View style={{
+              backgroundColor:'#D1887A', 
+              width: '40%', 
+              height: 3,
+              borderRadius: 3, 
+              bottom: -15,
+              marginRight: 5,
+              marginLeft: 5
+              }} 
+            />
+          )
+        }
+        dot={
+          (
+            <View style={{
+              backgroundColor:'#434596', 
+              width: '40%', 
+              height: 3,
+              borderRadius: 3, 
+              bottom: -15,
+              marginRight: 5,
+              marginLeft: 5
+              }} 
+            />
+          )
+        }
+      >
 
         <View style={style.container} >
           <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
@@ -369,17 +400,19 @@ export default class Sudoku extends Component {
             </View>
           </View>
 
+          <InputModal 
+            active={this.state.inputModal}
+            selected={this.state.selected.row || this.state.selected.row === 0 ? this.state.currentSudoku[this.state.selected.row][this.state.selected.col] : ''}
+            hideInput={() => this.hideInputModal()} 
+            update={(val) => this.update(val)} />
+            
           <View style={[style.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>
             {sudokuBlock}
             <View style={style.board}></View>
             <View style={style.boardShadow}></View>
           </View>
 
-          <InputModal 
-            active={this.state.inputModal}
-            selected={this.state.selected.row || this.state.selected.row === 0 ? this.state.currentSudoku[this.state.selected.row][this.state.selected.col] : ''}
-            hideInput={() => this.hideInputModal()} 
-            update={(val) => this.update(val)} />
+          
 
           {modal}
         </View>
@@ -387,6 +420,8 @@ export default class Sudoku extends Component {
         <View>
           <SavedProgress />
         </View>
+
+
 
       </Swiper>
     );

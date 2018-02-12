@@ -15,7 +15,6 @@ module.exports = StyleSheet.create({
 	container: {
     alignItems: 'center',
     position: 'absolute',
-    bottom: 20,
     width: '100%',
     zIndex: 999,
   },
