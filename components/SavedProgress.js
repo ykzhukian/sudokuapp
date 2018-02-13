@@ -27,6 +27,14 @@ export default class SavedProgress extends Component {
     this.setState({ fontLoaded: true });
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      preview: false,
+      previewSudoku: [],
+      previewID: null
+    })
+  }
+
   openPreview(sudoku, id) {
     this.setState({
       preview: true,
