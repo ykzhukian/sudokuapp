@@ -13,7 +13,7 @@ var colors = require('./colors');
 module.exports = StyleSheet.create({
 
   progressWrapper: {
-    width: '100%',
+    width: '95%',
     justifyContent: 'space-around',
     flexDirection: 'row',
     marginBottom: 15,

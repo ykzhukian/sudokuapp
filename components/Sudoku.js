@@ -34,10 +34,6 @@ export default class Sudoku extends Component {
     }
   }
 
-  componentWillMount() {
-    
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.restoring) {
       // Reading from storage
@@ -120,7 +116,6 @@ export default class Sudoku extends Component {
         saved: []
       });
     });
-    
   }
 
   save() {
@@ -138,9 +133,7 @@ export default class Sudoku extends Component {
       return;
     }
 
-    if (saved.length === 0) {
-      this.refs.slider.scrollBy(1)
-    }
+    this.refs.slider.scrollBy(1)
 
     let toBeSavedSudoku = currentSudoku.slice();
     currentSudoku.forEach((row, rowIndex) => {
@@ -156,9 +149,9 @@ export default class Sudoku extends Component {
     }
     
     saved.push(toBeSaved);
-      setTimeout(() => {
-        this.setState({
-        saved: saved
+    setTimeout(() => {
+      this.setState({
+      saved: saved
       }, () => {
         Util.storeData('progress', {
           saved: saved
@@ -175,6 +168,9 @@ export default class Sudoku extends Component {
   }
 
   restore(sudoku) {
+
+    this.refs.slider.scrollBy(-1);
+
     let toBeRestored = sudoku.slice();
     sudoku.forEach((row, rowIndex) => {
       toBeRestored[rowIndex] = sudoku[rowIndex].slice();
@@ -270,7 +266,6 @@ export default class Sudoku extends Component {
       row: position.row,
       col: position.col
     }
-    // console.log('axis ',axis)
     
     this.setState({
       inputModal: true,
@@ -429,7 +424,7 @@ export default class Sudoku extends Component {
         </View>
 
         <View>
-          <SavedProgress prefilledArr={this.state.prefilledArr} delete={(id) => this.delete(id)} saved={this.state.saved} />
+          <SavedProgress prefilledArr={this.state.prefilledArr} delete={(id) => this.delete(id)} saved={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
         </View>
 
       </Swiper>

@@ -9,7 +9,6 @@ import SavedProgressCard from './SavedProgressCard';
 import SavedProgressPreview from './SavedProgressPreview';
 import MessageModal from './MessageModal';
 
-
 export default class SavedProgress extends Component {
 
 	constructor(props) {
@@ -64,6 +63,15 @@ export default class SavedProgress extends Component {
     });
   }
 
+  restore(sudoku) {
+    this.setState({
+      preview: false,
+      previewSudoku: [],
+      previewID: null
+    });
+    this.props.restore(sudoku)
+  }
+
   render() {
 
     const progressCards = this.props.saved.map((progress, index) => (
@@ -72,7 +80,7 @@ export default class SavedProgress extends Component {
 
     const progressPreview = this.state.preview?
     (<View style={{height: '100%', width: Util.deviceWidth(), backgroundColor: '#282956', position: 'absolute', top: 0, right: 20}}>
-      <SavedProgressPreview prefilledArr={this.props.prefilledArr} closePreview={() => this.closePreview()}  sudoku={this.state.previewSudoku} id={this.state.previewID} />
+      <SavedProgressPreview prefilledArr={this.props.prefilledArr} closePreview={() => this.closePreview()}  sudoku={this.state.previewSudoku} id={this.state.previewID} restore={(sudoku) => this.restore(sudoku)} />
     </View>)
     : null;
 
@@ -106,9 +114,3 @@ export default class SavedProgress extends Component {
     );
   }
 }
-
-
-
-
-
-

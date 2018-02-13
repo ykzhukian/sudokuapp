@@ -66,6 +66,7 @@ export default class SavedProgressPreview extends Component {
         </View>
         <View style={{position: 'absolute', bottom: 180,}}>
           <MessageModal 
+            confirmFunction={() => this.props.restore(this.props.sudoku)}
             cancelFunction={() => this.props.closePreview()}
             message={'To go back, you will lose current progress.'}
             />
@@ -74,9 +75,3 @@ export default class SavedProgressPreview extends Component {
     );
   }
 }
-
-
-
-
-
-

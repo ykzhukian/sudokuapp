@@ -85,9 +85,3 @@ export default class SavedProgressCard extends Component {
     );
   }
 }
-
-
-
-
-
-
