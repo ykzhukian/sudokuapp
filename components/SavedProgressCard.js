@@ -64,7 +64,7 @@ export default class SavedProgressCard extends Component {
       <TouchableWithoutFeedback
         onPressIn={() => this.pressIn()}
         onPressOut={() => this.pressOut()}
-        onPress={() => this.props.openPreview(this.props.sudoku)} >
+        onPress={() => this.props.openPreview(this.props.sudoku, this.props.id)} >
         <Animated.View style={[style.progressWrapper, {transform: [{scale: zoom}]}]}>
         	<View style={style.cardContainer} >
     	      <View style={[style.cardWrapper, (this.state.pressed? {marginTop: 5} : [])]} >

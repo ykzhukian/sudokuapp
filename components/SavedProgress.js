@@ -28,10 +28,11 @@ export default class SavedProgress extends Component {
     this.setState({ fontLoaded: true });
   }
 
-  openPreview(sudoku) {
+  openPreview(sudoku, id) {
     this.setState({
       preview: true,
-      sudoku: sudoku
+      previewSudoku: sudoku,
+      previewID: id
     })
   }
 
@@ -69,7 +70,7 @@ export default class SavedProgress extends Component {
     ));
 
     const progressPreview = this.state.preview?
-    (<View style={{height: '100%', width: Util.deviceWidth(), backgroundColor: '#282956', position: 'absolute', top: 0, right: 20}}><SavedProgressPreview closePreview={() => this.closePreview()}  sudoku={this.state.sudoku} /></View>)
+    (<View style={{height: '100%', width: Util.deviceWidth(), backgroundColor: '#282956', position: 'absolute', top: 0, right: 20}}><SavedProgressPreview closePreview={() => this.closePreview()}  sudoku={this.state.previewSudoku} id={this.state.previewID} /></View>)
     : null;
 
     const modal = this.state.modal? (

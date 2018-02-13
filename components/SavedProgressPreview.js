@@ -49,10 +49,12 @@ export default class SavedProgressPreview extends Component {
       </View>
     ));
 
+    const time = Util.formatDate(this.props.id);
+
     return (
       <View style={[style.previewWrapper, {width: Util.deviceWidth()}]} >
         {this.state.fontLoaded ? 
-          (<Text style={{fontFamily: 'Dosis', fontSize: 24, color: 'white', textAlign: 'center', marginTop: 30}}>{'19:32   14 SEP 2018'}</Text>) : null
+          (<Text style={{fontFamily: 'Dosis', fontSize: 24, color: 'white', textAlign: 'center', marginTop: 30}}>{time}</Text>) : null
         }
         <View style={{position: 'relative', marginTop: 50}}>
           <View style={[sudokuStyle.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>
