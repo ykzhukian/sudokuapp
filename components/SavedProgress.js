@@ -39,7 +39,8 @@ export default class SavedProgress extends Component {
   closePreview() {
     this.setState({
       preview: false,
-      sudoku: []
+      previewSudoku: [],
+      previewID: null
     })
   }
 
@@ -66,7 +67,7 @@ export default class SavedProgress extends Component {
   render() {
 
     const progressCards = this.props.saved.map((progress, index) => (
-      <SavedProgressCard showDeleteModal={(id) => this.showDeleteModal(id)} openPreview={(sudoku) => this.openPreview(sudoku)} key={index} sudoku={progress.sudoku} id={progress.id} />
+      <SavedProgressCard showDeleteModal={(id) => this.showDeleteModal(id)} openPreview={(sudoku,id) => this.openPreview(sudoku,id)} key={index} sudoku={progress.sudoku} id={progress.id} />
     ));
 
     const progressPreview = this.state.preview?
