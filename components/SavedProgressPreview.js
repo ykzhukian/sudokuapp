@@ -38,11 +38,12 @@ export default class SavedProgressPreview extends Component {
             key={index} 
             data={{
               value: value,
-              activated: false,
+              activated: !Util.checkDuplicate(this.props.prefilledArr, [rowIndex, index]),
               errors: [],
               row: rowIndex,
               col: index,
-              highlight: {}
+              highlight: {},
+              preview: true
             }} 
             />
         ))}
@@ -56,7 +57,7 @@ export default class SavedProgressPreview extends Component {
         {this.state.fontLoaded ? 
           (<Text style={{fontFamily: 'Dosis', fontSize: 24, color: 'white', textAlign: 'center', marginTop: 30}}>{time}</Text>) : null
         }
-        <View style={{position: 'relative', marginTop: 50}}>
+        <View style={{position: 'relative', marginTop: 40}}>
           <View style={[sudokuStyle.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>
             {sudokuBlock}
             <View style={sudokuStyle.board}></View>

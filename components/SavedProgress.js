@@ -71,7 +71,9 @@ export default class SavedProgress extends Component {
     ));
 
     const progressPreview = this.state.preview?
-    (<View style={{height: '100%', width: Util.deviceWidth(), backgroundColor: '#282956', position: 'absolute', top: 0, right: 20}}><SavedProgressPreview closePreview={() => this.closePreview()}  sudoku={this.state.previewSudoku} id={this.state.previewID} /></View>)
+    (<View style={{height: '100%', width: Util.deviceWidth(), backgroundColor: '#282956', position: 'absolute', top: 0, right: 20}}>
+      <SavedProgressPreview prefilledArr={this.props.prefilledArr} closePreview={() => this.closePreview()}  sudoku={this.state.previewSudoku} id={this.state.previewID} />
+    </View>)
     : null;
 
     const modal = this.state.modal? (

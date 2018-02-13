@@ -429,7 +429,7 @@ export default class Sudoku extends Component {
         </View>
 
         <View>
-          <SavedProgress delete={(id) => this.delete(id)} saved={this.state.saved} />
+          <SavedProgress prefilledArr={this.state.prefilledArr} delete={(id) => this.delete(id)} saved={this.state.saved} />
         </View>
 
       </Swiper>

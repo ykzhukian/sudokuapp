@@ -81,7 +81,7 @@ export default class Cell extends Component {
       <TouchableWithoutFeedback 
         onPressIn={() => this.onPressIn()}
         onPress={(e) => this.onPress(e)} 
-        disabled={!this.props.data.activated} >
+        disabled={!this.props.data.activated || this.props.data.preview} >
         <View style={[style.cellWrapper, (!highlight && this.props.data.inputModal ? style.fade : [])]}>
           <ImageBackground 
             source={backgroundSrc}
