@@ -15,6 +15,7 @@ export default class SavedProgressCard extends Component {
     this.state = {
       sudoku: this.props.sudoku
     };
+    this.animateValue = new Animated.Value(0);
   }
 
   async componentDidMount() {
@@ -24,6 +25,18 @@ export default class SavedProgressCard extends Component {
     });
     //Setting the state to true when font is loaded.
     this.setState({ fontLoaded: true });
+    this.animate();
+  }
+
+  animate() {
+    this.animateValue.setValue(0);
+    Animated.spring(
+      this.animateValue,
+      {
+        toValue: 1,
+        friction: 6,
+      }
+    ).start()
   }
 
   pressIn() {
@@ -40,17 +53,24 @@ export default class SavedProgressCard extends Component {
 
   render() {
 
+    const zoom = this.animateValue.interpolate({
+      inputRange: [0, 0.5, 1],
+      outputRange: [1, 1.1, 1]
+    })
+
+    const time = Util.formatDate(this.props.id);
+
     return (
       <TouchableWithoutFeedback
         onPressIn={() => this.pressIn()}
         onPressOut={() => this.pressOut()}
         onPress={() => this.props.openPreview(this.props.sudoku)} >
-        <View style={style.progressWrapper}>
+        <Animated.View style={[style.progressWrapper, {transform: [{scale: zoom}]}]}>
         	<View style={style.cardContainer} >
     	      <View style={[style.cardWrapper, (this.state.pressed? {marginTop: 5} : [])]} >
     	        <View style={style.card} >
     	        	{ this.state.fontLoaded ? (
-                    <Text style={style.cardText} >19:32      14 SEP</Text>
+                    <Text style={style.cardText} >{time}</Text>
                   ) : null }
     	        </View>
     	        <View style={style.cardReflectionRound} ></View>
@@ -59,8 +79,8 @@ export default class SavedProgressCard extends Component {
     	      </View>
             <View style={[style.cardShadow, (this.state.pressed? {marginTop: -20} : [])]} ></View>  
           </View>
-          <ControlButton icon={require('../assets/img/delete.png')} />
-        </View>
+          <ControlButton buttonFunction={() => this.props.showDeleteModal(this.props.id)} icon={require('../assets/img/delete.png')} />
+        </Animated.View>
       </TouchableWithoutFeedback>
     );
   }

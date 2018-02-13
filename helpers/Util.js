@@ -272,7 +272,7 @@ const Mixin = {
   formatDate(timestamp) {
     const date = new Date(timestamp);
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
-    return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + month[date.getMonth()] + ' ' + date.getDate() ;
+    return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + '   ' + month[date.getMonth()] + ' ' + date.getDate() ;
   },
 
   deviceWidth() {return Dimensions.get('window').width - 40;},

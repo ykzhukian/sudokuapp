@@ -12,7 +12,6 @@ import { Font } from 'expo';
 import Swiper from 'react-native-swiper';
 import SavedProgress from './SavedProgress';
 import MessageModal from './MessageModal';
-import Modal from 'react-native-modalbox';
 
 const style = require('./styles/Sudoku');
 
@@ -139,6 +138,10 @@ export default class Sudoku extends Component {
       return;
     }
 
+    if (saved.length === 0) {
+      this.refs.slider.scrollBy(1)
+    }
+
     let toBeSavedSudoku = currentSudoku.slice();
     currentSudoku.forEach((row, rowIndex) => {
       toBeSavedSudoku[rowIndex] = currentSudoku[rowIndex].slice();
@@ -151,14 +154,17 @@ export default class Sudoku extends Component {
       id: Date.now(),
       sudoku: toBeSavedSudoku
     }
+    
     saved.push(toBeSaved);
-    this.setState({
-      saved: saved
-    }, () => {
-      Util.storeData('progress', {
+      setTimeout(() => {
+        this.setState({
         saved: saved
+      }, () => {
+        Util.storeData('progress', {
+          saved: saved
+        });
       });
-    });
+    }, 300)
   }
 
   delete(id) {
@@ -363,7 +369,7 @@ export default class Sudoku extends Component {
 
 
     return (
-      <Swiper loop={false} showsPagination={true} 
+      <Swiper loop={false} showsPagination={true} ref="slider"
         activeDot={
           (
             <View style={{
@@ -423,20 +429,11 @@ export default class Sudoku extends Component {
         </View>
 
         <View>
-          <SavedProgress saved={this.state.saved} />
+          <SavedProgress delete={(id) => this.delete(id)} saved={this.state.saved} />
         </View>
 
       </Swiper>
     );
   }
 }
-
-/*
-<TouchableWithoutFeedback
-            style={style.clear}
-            onPress={() => this.save()}
-          ><View><Text>Save Current Progress</Text></View></TouchableWithoutFeedback>
-          
-          <RestoreList delete={(index) => this.delete(index)} stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
-          */
 
