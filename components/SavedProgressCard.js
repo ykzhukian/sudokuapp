@@ -79,7 +79,7 @@ export default class SavedProgressCard extends Component {
     	      </View>
             <View style={[style.cardShadow, (this.state.pressed? {marginTop: -20} : [])]} ></View>  
           </View>
-          <ControlButton buttonFunction={() => this.props.showDeleteModal(this.props.id)} icon={require('../assets/img/delete.png')} />
+          <ControlButton active={true} buttonFunction={() => this.props.showDeleteModal(this.props.id)} icon={require('../assets/img/delete.png')} />
         </Animated.View>
       </TouchableWithoutFeedback>
     );

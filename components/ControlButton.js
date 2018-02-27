@@ -33,23 +33,19 @@ export default class ControlButton extends Component {
 
     return (
       <TouchableWithoutFeedback
+        disabled={!this.props.active}
         onPressIn={() => this.pressIn()}
         onPressOut={() => this.pressOut()}
         style={style.control}
         onPress={() => this.props.buttonFunction()}
-        disable={this.props.active}
         >
         <View style={style.controlWrapper} >
-          <Image style={[style.controlImage, (this.state.pressed? style.pressed : [])]} source={this.props.icon} />
-          <View style={style.controlShadow} ></View>
+          <Image style={[style.controlImage, 
+            (this.state.pressed? style.pressed : []), 
+            (!this.props.active? {opacity: 0.3} : [])]} source={this.props.icon} />
+          <View style={[style.controlShadow, (!this.props.active? {opacity: 0} : [])]} ></View>
         </View>
       </TouchableWithoutFeedback>
     );
   }
 }
-
-
-
-
-
-

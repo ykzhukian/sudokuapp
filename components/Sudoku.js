@@ -213,7 +213,27 @@ export default class Sudoku extends Component {
   }
 
   hint() {
-    console.log(this.state.selected.row);
+    // Check selected
+    if (this.state.selected.row || this.state.selected.row === 0) {
+
+      // Update prefilled array
+      let prefilledArr = this.state.prefilledArr;
+      prefilledArr.push([this.state.selected.row, this.state.selected.col]);
+
+      // Update current sudoku
+      let currentSudoku = this.state.currentSudoku;
+      currentSudoku[this.state.selected.row][this.state.selected.col] = this.state.sudoku[this.state.selected.row][this.state.selected.col];
+
+      this.setState({
+        prefilledArr: prefilledArr,
+        currentSudoku: currentSudoku
+      }, () => {
+        Util.storeData('progress', {
+          prefilledArr: prefilledArr,
+          currentSudoku: currentSudoku
+        });
+      });
+    }
   }
 
   clearModal() {
@@ -402,13 +422,13 @@ export default class Sudoku extends Component {
         <View style={style.container} >
           <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
-              <ControlButton buttonFunction={() => this.cancelGame()} icon={require('../assets/img/close.png')} />
-              <ControlButton buttonFunction={() => this.clearModal()} icon={require('../assets/img/clear.png')} />
+              <ControlButton active={true} buttonFunction={() => this.cancelGame()} icon={require('../assets/img/close.png')} />
+              <ControlButton active={true} buttonFunction={() => this.clearModal()} icon={require('../assets/img/clear.png')} />
             </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
-              <ControlButton active={this.state.selected} buttonFunction={() => this.hint()} icon={require('../assets/img/hint.png')} />
-              <ControlButton buttonFunction={() => this.save()} icon={require('../assets/img/save.png')} />
+              <ControlButton active={this.state.selected.row || this.state.selected.row === 0} buttonFunction={() => this.hint()} icon={require('../assets/img/hint.png')} />
+              <ControlButton active={true} buttonFunction={() => this.save()} icon={require('../assets/img/save.png')} />
             </View>
           </View>
 
