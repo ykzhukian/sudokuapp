@@ -56,7 +56,10 @@ export default class InputModal extends Component {
             (this.props.selected !== '' && this.props.selected === this.props.value ? style.selected : ''),
             ]} >
             {this.state.fontLoaded ? 
-              (<Text style={style.buttonText}>{this.props.value === '' ? 'x' : this.props.value}</Text>) : null
+              (<Text style={[
+                style.buttonText, 
+                (this.props.value === '' ? {paddingBottom: 10} : [])
+                ]}>{this.props.value === '' ? 'x' : this.props.value}</Text>) : null
             }
             <View style={style.buttonReflectionRound} ></View>
             <View style={style.buttonReflectionLarge} ></View>
