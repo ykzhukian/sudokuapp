@@ -212,6 +212,10 @@ export default class Sudoku extends Component {
     });
   }
 
+  hint() {
+    console.log(this.state.selected.row);
+  }
+
   clearModal() {
     this.setState({
       confirmFunction: 'clear',
@@ -403,7 +407,7 @@ export default class Sudoku extends Component {
             </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
-              <ControlButton buttonFunction={() => this.clearModal()} icon={require('../assets/img/hint.png')} />
+              <ControlButton active={this.state.selected} buttonFunction={() => this.hint()} icon={require('../assets/img/hint.png')} />
               <ControlButton buttonFunction={() => this.save()} icon={require('../assets/img/save.png')} />
             </View>
           </View>

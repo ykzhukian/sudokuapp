@@ -37,6 +37,7 @@ export default class ControlButton extends Component {
         onPressOut={() => this.pressOut()}
         style={style.control}
         onPress={() => this.props.buttonFunction()}
+        disable={this.props.active}
         >
         <View style={style.controlWrapper} >
           <Image style={[style.controlImage, (this.state.pressed? style.pressed : [])]} source={this.props.icon} />
