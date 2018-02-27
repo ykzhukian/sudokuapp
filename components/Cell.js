@@ -88,9 +88,9 @@ export default class Cell extends Component {
             style={[
               style.cell, 
               (this.state.axis % 2 === 0 ? style.lightCell : []),
-              (error ? style.error : []),
-              (this.props.data.flag ? style.flag : []),
               ((this.props.data.selectedLink === this.props.data.value && this.props.data.value !== '') || this.props.data.selected ? style.selected : []),
+              (this.props.data.flag ? style.flag : []),
+              (error ? style.error : []),
             ]} >
             
             {
@@ -106,9 +106,9 @@ export default class Cell extends Component {
           <View style={[
             style.cellShadow,
             (this.state.axis % 2 === 0 ? style.lightCellShadow : []),
-            (this.props.data.selected ? style.selectedShadow : []),
             (error ? style.errorShadow : []),
             (this.props.data.flag ? style.flagShadow : []),
+            (this.props.data.selected ? style.selectedShadow : []),
           ]}></View>
         </View>
       </TouchableWithoutFeedback>
