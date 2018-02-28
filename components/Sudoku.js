@@ -33,7 +33,8 @@ export default class Sudoku extends Component {
      flags: [],
      highlight: {},
      modal: false,
-     saved: []
+     saved: [],
+     adLoading: false
     }
   }
 
@@ -122,9 +123,18 @@ export default class Sudoku extends Component {
   }
 
   _openRewarded = () => {
+    // Show loading screen
+    this.setState({
+      adLoading: true
+    })
+
+    //
     AdMobRewarded.requestAd((data) => {
       AdMobRewarded.showAd(() => {
         console.log('show ad done')
+        this.setState({
+          adLoading: false
+        })
       })
     });
     AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', (type, amount) => 
@@ -400,9 +410,12 @@ export default class Sudoku extends Component {
       </View>
     ) : null;
 
+    const adLoading = this.state.adLoading?
+    (<View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 999, justifyContent:'center',alignItems: 'center'}}><Loading /></View>) : null;
 
-    return (
-      <Swiper loop={false} showsPagination={true} ref="slider"
+
+    return this.state.adLoading? (adLoading) : (
+      <Swiper loop={false} showsPagination={true} ref="slider" 
         activeDot={
           (
             <View style={{
@@ -413,7 +426,7 @@ export default class Sudoku extends Component {
               bottom: -15,
               marginRight: 5,
               marginLeft: 5
-              }} 
+            }}
             />
           )
         }
@@ -432,7 +445,6 @@ export default class Sudoku extends Component {
           )
         }
       >
-
         <View style={style.container} >
           <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
@@ -459,6 +471,7 @@ export default class Sudoku extends Component {
           </View>
 
           {modal}
+          {adLoading}
 
         </View>
 
