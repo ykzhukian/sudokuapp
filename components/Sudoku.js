@@ -8,12 +8,15 @@ import ControlButton from './ControlButton';
 import InputModal from './InputModal';
 import RestoreList from './RestoreList';
 import Loading from './Loading';
-import { Font } from 'expo';
+import { Font, AdMobRewarded, AdMobBanner } from 'expo';
 import Swiper from 'react-native-swiper';
 import SavedProgress from './SavedProgress';
 import MessageModal from './MessageModal';
 
 const style = require('./styles/Sudoku');
+
+const REWARDED_ID = `ca-app-pub-5515970670639994/6924581132`;
+AdMobRewarded.setAdUnitID(REWARDED_ID);
 
 export default class Sudoku extends Component {
 
@@ -117,6 +120,17 @@ export default class Sudoku extends Component {
       });
     });
   }
+
+  _openRewarded = () => {
+    AdMobRewarded.requestAd((data) => {
+      AdMobRewarded.showAd(() => {
+        console.log('show ad done')
+      })
+    });
+    AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', (type, amount) => 
+      {this.hint();}
+    );
+  };
 
   save() {
     let currentSudoku = this.state.currentSudoku;
@@ -427,7 +441,7 @@ export default class Sudoku extends Component {
             </View>
 
             <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
-              <ControlButton active={this.state.selected.row || this.state.selected.row === 0} buttonFunction={() => this.hint()} icon={require('../assets/img/hint.png')} />
+              <ControlButton active={this.state.selected.row || this.state.selected.row === 0} buttonFunction={() => this._openRewarded()} icon={require('../assets/img/hint.png')} />
               <ControlButton active={true} buttonFunction={() => this.save()} icon={require('../assets/img/save.png')} />
             </View>
           </View>
@@ -445,6 +459,7 @@ export default class Sudoku extends Component {
           </View>
 
           {modal}
+
         </View>
 
         <View>
