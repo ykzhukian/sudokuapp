@@ -128,10 +128,9 @@ export default class Sudoku extends Component {
       adLoading: true
     })
 
-    //
+    // Request AdMob
     AdMobRewarded.requestAd((data) => {
       AdMobRewarded.showAd(() => {
-        console.log('show ad done')
         this.setState({
           adLoading: false
         })
@@ -139,6 +138,9 @@ export default class Sudoku extends Component {
     });
     AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', (type, amount) => 
       {this.hint();}
+    );
+    AdMobRewarded.addEventListener('rewardedVideoDidFailToLoad', () => 
+      console.log('failed')
     );
   };
 
