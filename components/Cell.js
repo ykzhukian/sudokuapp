@@ -59,13 +59,7 @@ export default class Cell extends Component {
         flag: !this.props.data.flag
       })
     } else if (this.props.data.value === '') {
-      Alert.alert(
-            '🚫',
-            'Cannot flag empty cell',
-            [
-                {text: 'Cool', onPress: () => console.log('OK Pressed')},
-            ]
-        )
+      this.props.messageEmptyCell('Cannot flag an empty cell.');
     }
   }
 

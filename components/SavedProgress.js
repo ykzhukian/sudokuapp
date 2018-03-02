@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing, ScrollView } from 'react-native';
 import { Font } from 'expo';
 
 const style = require('./styles/SavedProgress');
@@ -8,6 +8,7 @@ import Util from '../helpers/Util';
 import SavedProgressCard from './SavedProgressCard';
 import SavedProgressPreview from './SavedProgressPreview';
 import MessageModal from './MessageModal';
+import Loading from './Loading';
 
 export default class SavedProgress extends Component {
 

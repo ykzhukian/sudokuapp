@@ -26,6 +26,11 @@ module.exports = StyleSheet.create({
     overflow: 'hidden'
   },
 
+  titleWrapper: {
+    width: '100%',
+    alignItems: 'center',
+  },
+
   cardWrapper: {
     width: '100%',
     backgroundColor: colors.colors.lightButton,

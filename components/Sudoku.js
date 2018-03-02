@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert, Dimensions, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert, Dimensions, Image, ScrollView } from 'react-native';
 
 import Util from '../helpers/Util';
 
@@ -12,8 +12,10 @@ import { Font, AdMobRewarded, AdMobBanner } from 'expo';
 import Swiper from 'react-native-swiper';
 import SavedProgress from './SavedProgress';
 import MessageModal from './MessageModal';
+import MessageNotification from './MessageNotification';
 
 const style = require('./styles/Sudoku');
+const progressStyle = require('./styles/SavedProgress');
 
 const REWARDED_ID = `ca-app-pub-5515970670639994/6924581132`;
 AdMobRewarded.setAdUnitID(REWARDED_ID);
@@ -34,7 +36,8 @@ export default class Sudoku extends Component {
      highlight: {},
      modal: false,
      saved: [],
-     adLoading: false
+     adLoading: false,
+     messageEmptyCell: false
     }
   }
 
@@ -148,15 +151,9 @@ export default class Sudoku extends Component {
     let currentSudoku = this.state.currentSudoku;
     let saved = this.state.saved;
 
-    if (saved.length > 8) {
-      Alert.alert(
-        'Sorry',
-        'Can only store 9 progress.',
-        [
-            {text: 'OK', onPress: () => console.log('Cancel Pressed')},
-        ]
-    )
-      return;
+    if (saved.length > 7) {
+      this.messageEmptyCell('Cannot save more than 8 progress.');
+      return
     }
 
     this.refs.slider.scrollBy(1)
@@ -190,7 +187,11 @@ export default class Sudoku extends Component {
     var saved = this.state.saved.filter(function(el) { return el.id != id; }); 
     this.setState({
       saved: saved
-    })
+    }, () => {
+      Util.storeData('progress', {
+        saved: saved
+      });
+    });
   }
 
   restore(sudoku) {
@@ -367,6 +368,19 @@ export default class Sudoku extends Component {
     }
   }
 
+  messageEmptyCell(notification) {
+    this.setState({
+      messageEmptyCell: true,
+      messageNotification: notification
+    })
+  }
+
+  closeMessageEmptyCell() {
+    this.setState({
+      messageEmptyCell: false
+    })
+  }
+
 
   render() {
 
@@ -395,6 +409,7 @@ export default class Sudoku extends Component {
             // updateSudoku={ (value, position) => this.update(value, position) } 
             removeFlag={ (value, position) => this.removeFlag(value, position) } 
             addFlag={ (position) => this.addFlag(position) }
+            messageEmptyCell={(notification) => this.messageEmptyCell(notification)}
             /> 
         ))}
       </View>
@@ -415,6 +430,16 @@ export default class Sudoku extends Component {
     const adLoading = this.state.adLoading?
     (<View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 999, justifyContent:'center',alignItems: 'center'}}><Loading /></View>) : null;
 
+    const messageEmptyCell = this.state.messageEmptyCell?
+    (
+      <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 999, justifyContent:'center',alignItems: 'center'}}>
+        <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 99, backgroundColor: '#000', opacity: 0.6}}></View>
+        <MessageNotification
+          cancelFunction={() => this.closeMessageEmptyCell()}
+          message={this.state.messageNotification}
+          />
+      </View>
+    ) : null;
 
     return this.state.adLoading? (adLoading) : (
       <Swiper loop={false} showsPagination={true} ref="slider" 
@@ -474,6 +499,7 @@ export default class Sudoku extends Component {
 
           {modal}
           {adLoading}
+          {messageEmptyCell}
 
         </View>
 

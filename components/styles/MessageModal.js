@@ -34,7 +34,12 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
+  },
 
+  notificationModal: {
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 20
   },
 
   buttonWrapper: {
