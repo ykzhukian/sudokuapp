@@ -21,6 +21,7 @@ export default class Win extends Component {
     return (
       <View>
         
+        
       </View>
     );
   }
