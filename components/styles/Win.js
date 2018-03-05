@@ -12,40 +12,22 @@ var colors = require('./colors');
 
 module.exports = StyleSheet.create({
 
-  control: {
-    marginTop: 50
-  },
-
-	controlWrapper: {
-    height: 50,
-    width: 50,
-    borderRadius: 4,
+  bg: {
+    backgroundColor: colors.colors.background,
+    height: '100%',
+    width: '100%',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative'
-  },
+    zIndex: 3
+  }, 
 
-  controlImage: {
-    height: 50,
-    width: 50,
-    zIndex: 2,
-    position: 'absolute',
-    start: 0,
-    bottom: 0
-  },
-
-  pressed: {
-    marginBottom: -4
-  },
-
-  controlShadow: {
-    backgroundColor: colors.colors.boardShadow,
-    height: 10,
-    width: '100%',
-    position: 'absolute',
-    bottom: -4,
-    start: 0,
-    borderRadius: 4,
-  },
+  wrapper: {
+    width: '80%',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  }
 
 });

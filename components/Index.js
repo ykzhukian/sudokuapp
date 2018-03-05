@@ -8,6 +8,7 @@ import Loading from './Loading';
 import SavedProgress from './SavedProgress';
 import MessageModal from './MessageModal';
 import SavedProgressPreview from './SavedProgressPreview';
+import Win from './Win';
 
 import { 
   StyleSheet, 
@@ -189,17 +190,17 @@ export default class Index extends Component {
       <Loading />
     </View>)
     :
-    null
+    null;
 
-    return (
-      <View style={style.container}>
-        <StatusBar barStyle="light-content" />
-        {this.state.fontLoaded && !this.state.loading ? content : null}
-        {bg}
-        {loading}
-      </View>
-    );
-    // return (<Loading></Loading>)
+    // return (
+    //   <View style={style.container}>
+    //     <StatusBar barStyle="light-content" />
+    //     {this.state.fontLoaded && !this.state.loading ? content : null}
+    //     {bg}
+    //     {loading}
+    //   </View>
+    // );
+    return (<Win />);
     
   }
 }

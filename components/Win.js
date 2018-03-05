@@ -16,12 +16,14 @@ export default class Win extends Component {
   }
 
 
+
   render() {
 
     return (
-      <View>
-        
-        
+      <View style={style.bg} >
+        <View style={style.wrapper} >
+          <Text>Hey</Text>
+        </View>
       </View>
     );
   }
