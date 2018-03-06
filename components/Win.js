@@ -22,7 +22,9 @@ export default class Win extends Component {
     return (
       <View style={style.bg} >
         <View style={style.wrapper} >
+        
           <Text>Hey</Text>
+
         </View>
       </View>
     );
