@@ -192,6 +192,18 @@ export default class Index extends Component {
     :
     null;
 
+    const seed = [
+      [8, 7, 4, 6, 3, 1, 5, 9, 2],
+      [5, 9, 6, 7, 2, 8, 4, 3, 1],
+      [2, 3, 1, 4, 5, 9, 6, 8, 7],
+      [4, 8, 2, 1, 9, 6, 7, 5, 3],
+      [7, 6, 5, 3, 8, 4, 2, 1, 9],
+      [9, 1, 3, 5, 7, 2, 8, 4, 6],
+      [3, 2, 9, 8, 6, 5, 1, 7, 4],
+      [1, 5, 7, 2, 4, 3, 9, 6, 8],
+      [6, 4, 8, 9, 1, 7, 3, 2, 5]
+    ]
+
     // return (
     //   <View style={style.container}>
     //     <StatusBar barStyle="light-content" />
@@ -202,7 +214,7 @@ export default class Index extends Component {
     // );
     return (<View style={style.container}>
       <StatusBar barStyle="light-content" />
-      <Win />
+      <Win sudoku={seed} />
       </View>);
     
   }
