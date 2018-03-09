@@ -28,6 +28,13 @@ module.exports = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
+  },
+
+  messageText: {
+    color: colors.colors.white,
+    fontSize: 32,
+    fontFamily: 'Dosis',
+    textAlign: 'center'
   }
 
 });

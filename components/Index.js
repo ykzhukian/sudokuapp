@@ -200,7 +200,10 @@ export default class Index extends Component {
     //     {loading}
     //   </View>
     // );
-    return (<Win />);
+    return (<View style={style.container}>
+      <StatusBar barStyle="light-content" />
+      <Win />
+      </View>);
     
   }
 }
