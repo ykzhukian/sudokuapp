@@ -17,13 +17,14 @@ export default class Win extends Component {
     this.state = {
       cameraRollUri: null,
       title: 'You solved it!',
-      buttons: true
+      buttons: true,
     }
 
     this.animateValue = new Animated.Value(0);
   }
 
   async componentDidMount() {
+
     await Font.loadAsync({
       'Dosis': require('../assets/fonts/Dosis-ExtraBold.ttf'),
       'Dosis-Light': require('../assets/fonts/Dosis-Bold.ttf'),
@@ -113,7 +114,7 @@ export default class Win extends Component {
             key={index} 
             data={{
               value: value,
-              activated: false,
+              activated: !Util.checkDuplicate(this.props.prefilledArr, [rowIndex, index]),
               errors: [],
               row: rowIndex,
               col: index,
@@ -125,9 +126,14 @@ export default class Win extends Component {
       </View>
     ));
 
+    const zoom = this.animateValue.interpolate({
+      inputRange: [0, 0.5, 1],
+      outputRange: [1, 1.1, 1]
+    })
+
     return (
-      <View 
-        style={style.bg} >
+      <Animated.View 
+        style={[style.bg, {transform: [{scale: zoom}]}]} >
         <ImageBackground source={backgroundSrc} style={style.bg} 
         ref={view => {
           this._container = view;
@@ -150,7 +156,7 @@ export default class Win extends Component {
             <View><Text style={style.messageText}>{Util.formatDate(Date.now())}</Text></View>
           )}
         </ImageBackground>
-      </View>
+      </Animated.View>
     );
   }
 
