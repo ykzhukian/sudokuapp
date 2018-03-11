@@ -90,7 +90,6 @@ export default class Index extends Component {
 
     // Reading storage for current progress
     Util.fetchData('difficulty', (err, result) => {
-      console.log(result);
       if (result.difficulty) {
         this.setState({
           playing: true
@@ -111,6 +110,15 @@ export default class Index extends Component {
   win() {
     this.setState({
       win: true,
+      playing: false
+    })
+    Util.storeData('difficulty', {difficulty: 0})
+  }
+
+  back() {
+    this.setState({
+      difficulty: 0,
+      win: false,
       playing: false
     })
     Util.storeData('difficulty', {difficulty: 0})
@@ -149,7 +157,7 @@ export default class Index extends Component {
           </View>
           <IndexButton 
             text={'Simple'} 
-            value={45} 
+            value={80} 
             color={'green'}
             selectDifficulty={(val) => this.selectDifficulty(val)} />
           <IndexButton 
@@ -170,7 +178,7 @@ export default class Index extends Component {
         </View>
       )
     } else {
-      content = (<Sudoku restoring={this.state.playing} prefilled={this.state.difficulty} cancelGame={() => this.cancelGame()} />)
+      content = (<Sudoku win={() => this.win()} finished={this.state.win} restoring={this.state.playing} prefilled={this.state.difficulty} cancelGame={() => this.cancelGame()} />)
     }
 
     const bg = (this.state.difficulty === 0 && !this.state.playing) ? 
@@ -204,19 +212,21 @@ export default class Index extends Component {
       [6, 4, 8, 9, 1, 7, 3, 2, 5]
     ]
 
-    // return (
-    //   <View style={style.container}>
-    //     <StatusBar barStyle="light-content" />
-    //     {this.state.fontLoaded && !this.state.loading ? content : null}
-    //     {bg}
-    //     {loading}
-    //   </View>
-    // );
-    return (<View style={style.container}>
-      <StatusBar barStyle="light-content" />
-      <Win sudoku={seed} />
-      </View>);
-    
+    return !this.state.win ?
+    (
+      <View style={style.container}>
+        <StatusBar barStyle="light-content" />
+        {this.state.fontLoaded && !this.state.loading ? content : null}
+        {bg}
+        {loading}
+      </View>
+    ) : (
+      <View style={style.container}>
+        <StatusBar barStyle="light-content" />
+        <Win back={() => this.back()} sudoku={seed} />
+      </View>
+    );
+
   }
 }
 

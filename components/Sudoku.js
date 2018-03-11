@@ -358,6 +358,12 @@ export default class Sudoku extends Component {
         initial: false
       });
     });
+
+    if (errors === 'finished') {
+      this.props.win();
+    }
+
+
   }
 
   confirmFunction() {
