@@ -170,7 +170,7 @@ export default class Index extends Component {
           </View>
           <IndexButton 
             text={'Simple'} 
-            value={80} 
+            value={48} 
             color={'green'}
             selectDifficulty={(val) => this.selectDifficulty(val)} />
           <IndexButton 

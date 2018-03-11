@@ -259,6 +259,24 @@ export default class Sudoku extends Component {
           prefilledArr: prefilledArr,
           currentSudoku: currentSudoku
         });
+
+        let errors = Util.verifyValue(currentSudoku);
+
+        this.setState({
+          currentSudoku: currentSudoku,
+          errors: errors,
+          initial: false
+        }, () => {
+          Util.storeData('progress', {
+            currentSudoku: currentSudoku,
+            errors: errors,
+            initial: false
+          });
+        });
+
+        if (errors === 'finished') {
+          this.props.win();
+        }
       });
     }
   }
