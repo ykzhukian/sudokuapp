@@ -1,67 +1,59 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native'
 
-const style = require('./styles/index');
+const style = require('./styles/index')
 
-import Util from '../helpers/Util';
+import Util from '../helpers/Util'
 
 export default class InputButton extends Component {
-
-	constructor(props) {
+  constructor (props) {
     super(props)
-  
+
     this.state = {
       pressed: false
     }
   }
 
-  pressIn() {
+  pressIn () {
     this.setState({
       pressed: true
     })
   }
 
-  pressOut() {
+  pressOut () {
     this.setState({
       pressed: false
     })
   }
 
-  render() {
-
+  render () {
     // let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
 
     return (
-      <TouchableWithoutFeedback 
-        onPressIn={() => this.pressIn()} 
-        onPressOut={() => this.pressOut()} 
+      <TouchableWithoutFeedback
+        onPressIn={() => this.pressIn()}
+        onPressOut={() => this.pressOut()}
         onPress={() => this.props.selectDifficulty(this.props.value)} >
         <View style={style.buttonWrapper} >
           <View style={[
-            style.button, 
+            style.button,
             (this.props.color === 'yellow' ? style.yellow : []),
             (this.props.color === 'orange' ? style.orange : []),
             (this.props.color === 'red' ? style.red : []),
-            (this.state.pressed? style.buttonPressed : [])]}>
+            (this.state.pressed ? style.buttonPressed : [])]}>
             <Text style={style.buttonText}>{this.props.text}</Text>
-            <View style={style.buttonReflectionRound} ></View>
-            <View style={style.buttonReflectionLarge} ></View>
-            <View style={style.buttonReflection} ></View>
+            <View style={style.buttonReflectionRound} />
+            <View style={style.buttonReflectionLarge} />
+            <View style={style.buttonReflection} />
           </View>
           <View style={[
             style.buttonShadow,
             (this.props.color === 'yellow' ? style.yellowShadow : []),
             (this.props.color === 'orange' ? style.orangeShadow : []),
-            (this.props.color === 'red' ? style.redShadow : []),
-          ]}></View>
+            (this.props.color === 'red' ? style.redShadow : [])
+          ]} />
         </View>
       </TouchableWithoutFeedback>
-    );
+    )
   }
 }
-
-
-
-
-
-

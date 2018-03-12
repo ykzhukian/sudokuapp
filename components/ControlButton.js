@@ -1,34 +1,30 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Image } from 'react-native';
+import React, { Component } from 'react'
+import { View, TouchableWithoutFeedback, Image } from 'react-native'
 
-const style = require('./styles/ControlButton');
-
-import Util from '../helpers/Util';
+const style = require('./styles/ControlButton')
 
 export default class ControlButton extends Component {
-
-	constructor(props) {
+  constructor (props) {
     super(props)
-  
+
     this.state = {
       pressed: false
     }
   }
 
-  pressIn() {
+  pressIn () {
     this.setState({
       pressed: true
     })
   }
 
-  pressOut() {
+  pressOut () {
     this.setState({
       pressed: false
     })
   }
 
-  render() {
-
+  render () {
     // let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
 
     return (
@@ -38,14 +34,14 @@ export default class ControlButton extends Component {
         onPressOut={() => this.pressOut()}
         style={style.control}
         onPress={() => this.props.buttonFunction()}
-        >
+      >
         <View style={style.controlWrapper} >
-          <Image style={[style.controlImage, 
-            (this.state.pressed? style.pressed : []), 
-            (!this.props.active? {opacity: 0.3} : [])]} source={this.props.icon} />
-          <View style={[style.controlShadow, (!this.props.active? {opacity: 0} : [])]} ></View>
+          <Image style={[style.controlImage,
+            (this.state.pressed ? style.pressed : []),
+            (!this.props.active ? {opacity: 0.3} : [])]} source={this.props.icon} />
+          <View style={[style.controlShadow, (!this.props.active ? {opacity: 0} : [])]} />
         </View>
       </TouchableWithoutFeedback>
-    );
+    )
   }
 }

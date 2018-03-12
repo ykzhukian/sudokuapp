@@ -1,14 +1,14 @@
-'use strict';
+'use strict'
 
-import { Font } from 'expo';
+import { Font } from 'expo'
 
-var React = require('react-native');
+var React = require('react-native')
 
 var {
-  StyleSheet,
-} = React;
+  StyleSheet
+} = React
 
-var colors = require('./colors');
+var colors = require('./colors')
 
 module.exports = StyleSheet.create({
 
@@ -16,7 +16,7 @@ module.exports = StyleSheet.create({
     marginTop: 50
   },
 
-	controlWrapper: {
+  controlWrapper: {
     height: 50,
     width: 50,
     borderRadius: 4,
@@ -45,7 +45,7 @@ module.exports = StyleSheet.create({
     position: 'absolute',
     bottom: -4,
     start: 0,
-    borderRadius: 4,
-  },
+    borderRadius: 4
+  }
 
-});
+})

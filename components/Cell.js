@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Alert, ImageBackground } from 'react-native';
-import { Font } from 'expo';
+import React, { Component } from 'react'
+import { Text, View, TouchableWithoutFeedback, ImageBackground } from 'react-native'
+import { Font } from 'expo'
 
-import Util from '../helpers/Util';
+import Util from '../helpers/Util'
 
-const style = require('./styles/Cell');
+const style = require('./styles/Cell')
 
-const DOUBLE_PRESS_DELAY = 300;
+const DOUBLE_PRESS_DELAY = 300
 
 export default class Cell extends Component {
-
-	constructor(props) {
+  constructor (props) {
     super(props)
-  
+
     this.state = {
       row: this.props.data.row,
       col: this.props.data.col,
@@ -21,78 +20,75 @@ export default class Cell extends Component {
     }
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     await Font.loadAsync({
-      'Dosis': require('../assets/fonts/Dosis-ExtraBold.ttf'),
-    });
-    //Setting the state to true when font is loaded.
-    this.setState({ fontLoaded: true });
+      'Dosis': require('../assets/fonts/Dosis-ExtraBold.ttf')
+    })
+    // Setting the state to true when font is loaded.
+    this.setState({ fontLoaded: true })
   }
 
-  onPress(e) {
-    const now = new Date().getTime();
+  onPress (e) {
+    const now = new Date().getTime()
 
     if (this.lastImagePress && (now - this.lastImagePress) < DOUBLE_PRESS_DELAY) {
-      delete this.lastImagePress;
-      
+      delete this.lastImagePress
+
       // Double click
-      this.onDoubleClick(e);
-
+      this.onDoubleClick(e)
     } else {
-      this.lastImagePress = now;
+      this.lastImagePress = now
     }
-    
   }
 
-  onPressIn() {
-    this.props.showInput({row:this.state.row, col: this.state.col});
+  onPressIn () {
+    this.props.showInput({row: this.state.row, col: this.state.col})
   }
 
-  onDoubleClick(event) {
+  onDoubleClick (event) {
     if (this.props.data.value !== '') {
       if (!this.props.data.flag) {
-        this.props.addFlag({row: this.state.row, col: this.state.col});
+        this.props.addFlag({row: this.state.row, col: this.state.col})
       } else {
-        this.props.removeFlag({row: this.state.row, col: this.state.col});
+        this.props.removeFlag({row: this.state.row, col: this.state.col})
       }
       this.setState({
         flag: !this.props.data.flag
       })
     } else if (this.props.data.value === '') {
-      this.props.messageEmptyCell('Cannot flag an empty cell.');
+      this.props.messageEmptyCell('Cannot flag an empty cell.')
     }
   }
 
-  render() {
-
-    let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
+  render () {
+    let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col])
     let highlight = (this.props.data.highlight.row === this.props.data.row) ||
-                    (this.props.data.highlight.col === this.props.data.col) || 
-                    (this.props.data.highlight.axis === this.state.axis);
-    let backgroundSrc = this.props.data.activated ? null : require('../assets/img/cell-slide.png');
+                    (this.props.data.highlight.col === this.props.data.col) ||
+                    (this.props.data.highlight.axis === this.state.axis)
+    let backgroundSrc = this.props.data.activated ? null : require('../assets/img/cell-slide.png')
 
     return (
-      <TouchableWithoutFeedback 
+      <TouchableWithoutFeedback
         onPressIn={() => this.onPressIn()}
-        onPress={(e) => this.onPress(e)} 
+        onPress={(e) => this.onPress(e)}
         disabled={!this.props.data.activated || this.props.data.preview} >
         <View style={[style.cellWrapper, (!highlight && this.props.data.inputModal ? style.fade : [])]}>
-          <ImageBackground 
+          <ImageBackground
             source={backgroundSrc}
             style={[
-              style.cell, 
+              style.cell,
               (this.state.axis % 2 === 0 ? style.lightCell : []),
               ((this.props.data.selectedLink === this.props.data.value && this.props.data.value !== '') || this.props.data.selected ? style.selected : []),
               (this.props.data.flag ? style.flag : []),
-              (error ? style.error : []),
+              (error ? style.error : [])
             ]} >
-            
+
             {
               this.state.fontLoaded ? (
                 <Text style={[
-                  style.cellText, 
-                  (!this.props.data.activated? style.activated : []),
-                  (error || this.props.data.flag ? style.highlistText : []),
+                  style.cellText,
+                  (!this.props.data.activated ? style.activated : []),
+                  (error || this.props.data.flag ? style.highlistText : [])
                 ]} >{this.props.data.value}</Text>
               ) : null
             }
@@ -102,13 +98,10 @@ export default class Cell extends Component {
             (this.state.axis % 2 === 0 ? style.lightCellShadow : []),
             (error ? style.errorShadow : []),
             (this.props.data.flag ? style.flagShadow : []),
-            (this.props.data.selected ? style.selectedShadow : []),
-          ]}></View>
+            (this.props.data.selected ? style.selectedShadow : [])
+          ]} />
         </View>
       </TouchableWithoutFeedback>
-    );
+    )
   }
 }
-
-
-

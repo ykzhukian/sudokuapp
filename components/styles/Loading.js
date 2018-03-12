@@ -1,18 +1,18 @@
-'use strict';
+'use strict'
 
-import { Font } from 'expo';
+import { Font } from 'expo'
 
-var React = require('react-native');
+var React = require('react-native')
 
 var {
-  StyleSheet,
-} = React;
+  StyleSheet
+} = React
 
-var colors = require('./colors');
+var colors = require('./colors')
 
 module.exports = StyleSheet.create({
 
-	bg: {
+  bg: {
     backgroundColor: colors.colors.background,
     height: '100%',
     width: '100%',
@@ -20,7 +20,7 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 3
-  }, 
+  },
 
   buttonWrapper: {
     position: 'relative',
@@ -38,7 +38,7 @@ module.exports = StyleSheet.create({
     zIndex: 3,
     position: 'absolute',
     top: 0,
-    height: 35,
+    height: 35
   },
 
   pressed: {
@@ -92,7 +92,7 @@ module.exports = StyleSheet.create({
     opacity: 0.2,
     zIndex: 4
   },
-  
+
   buttonText: {
     fontSize: 24,
     fontFamily: 'Dosis',
@@ -107,4 +107,4 @@ module.exports = StyleSheet.create({
     alignItems: 'center'
   }
 
-});
+})

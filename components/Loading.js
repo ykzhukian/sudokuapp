@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing } from 'react-native'
 
-const style = require('./styles/Loading');
+const style = require('./styles/Loading')
 
-import Util from '../helpers/Util';
-import LoadingButton from './LoadingButton';
+import Util from '../helpers/Util'
+import LoadingButton from './LoadingButton'
 
 export default class Loading extends Component {
-
-	constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  render() {
-
-    const loading = 'LOADING'.split('');
+  render () {
+    const loading = 'LOADING'.split('')
 
     loadingBlock = loading.map((value, index) => (
       <LoadingButton key={index} value={value} order={index} />
@@ -26,12 +24,6 @@ export default class Loading extends Component {
           {loadingBlock}
         </View>
       </View>
-    );
+    )
   }
 }
-
-
-
-
-
-

@@ -1,64 +1,61 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing } from 'react-native';
-import { Font } from 'expo';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing } from 'react-native'
+import { Font } from 'expo'
 
-const style = require('./styles/SavedProgress');
+const style = require('./styles/SavedProgress')
 
-import Util from '../helpers/Util';
-import ControlButton from './ControlButton';
-
+import Util from '../helpers/Util'
+import ControlButton from './ControlButton'
 
 export default class SavedProgressCard extends Component {
-
-	constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       sudoku: this.props.sudoku
-    };
-    this.animateValue = new Animated.Value(0);
+    }
+    this.animateValue = new Animated.Value(0)
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     await Font.loadAsync({
       'Dosis': require('../assets/fonts/Dosis-ExtraBold.ttf'),
-      'Dosis-Light': require('../assets/fonts/Dosis-Bold.ttf'),
-    });
-    //Setting the state to true when font is loaded.
-    this.setState({ fontLoaded: true });
-    this.animate();
+      'Dosis-Light': require('../assets/fonts/Dosis-Bold.ttf')
+    })
+    // Setting the state to true when font is loaded.
+    this.setState({ fontLoaded: true })
+    this.animate()
   }
 
-  animate() {
-    this.animateValue.setValue(0);
+  animate () {
+    this.animateValue.setValue(0)
     Animated.spring(
       this.animateValue,
       {
         toValue: 1,
-        friction: 6,
+        friction: 6
       }
     ).start()
   }
 
-  pressIn() {
+  pressIn () {
     this.setState({
       pressed: true
     })
   }
 
-  pressOut() {
+  pressOut () {
     this.setState({
       pressed: false
     })
   }
 
-  render() {
-
+  render () {
     const zoom = this.animateValue.interpolate({
       inputRange: [0, 0.5, 1],
       outputRange: [1, 1.1, 1]
     })
 
-    const time = Util.formatDate(this.props.id);
+    const time = Util.formatDate(this.props.id)
 
     return (
       <TouchableWithoutFeedback
@@ -66,22 +63,22 @@ export default class SavedProgressCard extends Component {
         onPressOut={() => this.pressOut()}
         onPress={() => this.props.openPreview(this.props.sudoku, this.props.id)} >
         <Animated.View style={[style.progressWrapper, {transform: [{scale: zoom}]}]}>
-        	<View style={style.cardContainer} >
-    	      <View style={[style.cardWrapper, (this.state.pressed? {marginTop: 5} : [])]} >
-    	        <View style={style.card} >
-    	        	{ this.state.fontLoaded ? (
-                    <Text style={style.cardText} >{time}</Text>
-                  ) : null }
-    	        </View>
-    	        <View style={style.cardReflectionRound} ></View>
-    	        <View style={style.cardReflectionLarge} ></View>
-    	        <View style={style.cardReflection} ></View>
-    	      </View>
-            <View style={[style.cardShadow, (this.state.pressed? {marginTop: -20} : [])]} ></View>  
+          <View style={style.cardContainer} >
+            <View style={[style.cardWrapper, (this.state.pressed ? {marginTop: 5} : [])]} >
+              <View style={style.card} >
+                { this.state.fontLoaded ? (
+                  <Text style={style.cardText} >{time}</Text>
+                ) : null }
+              </View>
+              <View style={style.cardReflectionRound} />
+              <View style={style.cardReflectionLarge} />
+              <View style={style.cardReflection} />
+            </View>
+            <View style={[style.cardShadow, (this.state.pressed ? {marginTop: -20} : [])]} />
           </View>
-          <ControlButton active={true} buttonFunction={() => this.props.showDeleteModal(this.props.id)} icon={require('../assets/img/delete.png')} />
+          <ControlButton active buttonFunction={() => this.props.showDeleteModal(this.props.id)} icon={require('../assets/img/delete.png')} />
         </Animated.View>
       </TouchableWithoutFeedback>
-    );
+    )
   }
 }

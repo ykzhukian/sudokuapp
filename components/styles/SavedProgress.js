@@ -1,14 +1,14 @@
-'use strict';
+'use strict'
 
-import { Font } from 'expo';
+import { Font } from 'expo'
 
-var React = require('react-native');
+var React = require('react-native')
 
 var {
-  StyleSheet,
-} = React;
+  StyleSheet
+} = React
 
-var colors = require('./colors');
+var colors = require('./colors')
 
 module.exports = StyleSheet.create({
 
@@ -16,10 +16,10 @@ module.exports = StyleSheet.create({
     width: '95%',
     justifyContent: 'space-around',
     flexDirection: 'row',
-    marginBottom: 15,
+    marginBottom: 15
   },
 
-	wrapper: {
+  wrapper: {
     width: '100%',
     height: '100%',
     alignItems: 'center',
@@ -28,7 +28,7 @@ module.exports = StyleSheet.create({
 
   titleWrapper: {
     width: '100%',
-    alignItems: 'center',
+    alignItems: 'center'
   },
 
   cardWrapper: {
@@ -39,14 +39,14 @@ module.exports = StyleSheet.create({
     zIndex: 1,
     height: 48,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   card: {
     padding: 10,
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingLeft: 20,
+    paddingLeft: 20
   },
 
   cardContainer: {
@@ -54,7 +54,7 @@ module.exports = StyleSheet.create({
     borderRadius: 4,
     position: 'relative',
     zIndex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
 
   cardShadow: {
@@ -64,7 +64,7 @@ module.exports = StyleSheet.create({
     marginTop: -15,
     backgroundColor: colors.colors.lightButtonShadow,
     borderRadius: 4,
-    alignItems: 'center',
+    alignItems: 'center'
   },
 
   cardReflectionLarge: {
@@ -75,7 +75,7 @@ module.exports = StyleSheet.create({
     right: 16,
     top: 3,
     borderRadius: 4,
-    opacity: 0.2,
+    opacity: 0.2
 
   },
 
@@ -87,7 +87,7 @@ module.exports = StyleSheet.create({
     right: '1%',
     top: 3,
     borderRadius: 4,
-    opacity: 0.2,
+    opacity: 0.2
 
   },
 
@@ -99,14 +99,14 @@ module.exports = StyleSheet.create({
     right: '1%',
     top: 3,
     borderRadius: 4,
-    opacity: 0.2,
+    opacity: 0.2
 
   },
 
   cardText: {
     fontFamily: 'Dosis',
     color: colors.colors.white,
-    fontSize: 18,
+    fontSize: 18
 
   },
 
@@ -115,13 +115,12 @@ module.exports = StyleSheet.create({
     color: colors.colors.white,
     fontSize: 24,
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 20
 
   },
 
   previewWrapper: {
-    height: '100%',
+    height: '100%'
   }
 
-
-});
+})

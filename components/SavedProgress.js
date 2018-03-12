@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing, ScrollView } from 'react-native';
-import { Font } from 'expo';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing, ScrollView } from 'react-native'
+import { Font } from 'expo'
 
-const style = require('./styles/SavedProgress');
+const style = require('./styles/SavedProgress')
 
-import Util from '../helpers/Util';
-import SavedProgressCard from './SavedProgressCard';
-import SavedProgressPreview from './SavedProgressPreview';
-import MessageModal from './MessageModal';
-import Loading from './Loading';
+import Util from '../helpers/Util'
+import SavedProgressCard from './SavedProgressCard'
+import SavedProgressPreview from './SavedProgressPreview'
+import MessageModal from './MessageModal'
+import Loading from './Loading'
 
 export default class SavedProgress extends Component {
-
-	constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      modal: false,
-    };
+      modal: false
+    }
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     await Font.loadAsync({
       'Dosis': require('../assets/fonts/Dosis-ExtraBold.ttf'),
-      'Dosis-Light': require('../assets/fonts/Dosis-Bold.ttf'),
-    });
-    //Setting the state to true when font is loaded.
-    this.setState({ fontLoaded: true });
+      'Dosis-Light': require('../assets/fonts/Dosis-Bold.ttf')
+    })
+    // Setting the state to true when font is loaded.
+    this.setState({ fontLoaded: true })
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     this.setState({
       preview: false,
       previewSudoku: [],
@@ -36,7 +35,7 @@ export default class SavedProgress extends Component {
     })
   }
 
-  openPreview(sudoku, id) {
+  openPreview (sudoku, id) {
     this.setState({
       preview: true,
       previewSudoku: sudoku,
@@ -44,7 +43,7 @@ export default class SavedProgress extends Component {
     })
   }
 
-  closePreview() {
+  closePreview () {
     this.setState({
       preview: false,
       previewSudoku: [],
@@ -52,74 +51,73 @@ export default class SavedProgress extends Component {
     })
   }
 
-  showDeleteModal(id) {
+  showDeleteModal (id) {
     this.setState({
       modal: true,
       deleteId: id
-    });
+    })
   }
 
-  confirmFunction() {
+  confirmFunction () {
     this.props.delete(this.state.deleteId)
     this.setState({
       modal: false
-    });
+    })
   }
 
-  cancel() {
+  cancel () {
     this.setState({
       modal: false
-    });
+    })
   }
 
-  restore(sudoku) {
+  restore (sudoku) {
     this.setState({
       preview: false,
       previewSudoku: [],
       previewID: null
-    });
+    })
     this.props.restore(sudoku)
   }
 
-  render() {
-
+  render () {
     const progressCards = this.props.saved.map((progress, index) => (
-      <SavedProgressCard showDeleteModal={(id) => this.showDeleteModal(id)} openPreview={(sudoku,id) => this.openPreview(sudoku,id)} key={index} sudoku={progress.sudoku} id={progress.id} />
-    ));
+      <SavedProgressCard showDeleteModal={(id) => this.showDeleteModal(id)} openPreview={(sudoku, id) => this.openPreview(sudoku, id)} key={index} sudoku={progress.sudoku} id={progress.id} />
+    ))
 
-    const progressPreview = this.state.preview?
-    (<View style={{height: '100%', width: Util.deviceWidth(), backgroundColor: '#282956', position: 'absolute', top: 0, right: 20}}>
-      <SavedProgressPreview prefilledArr={this.props.prefilledArr} closePreview={() => this.closePreview()}  sudoku={this.state.previewSudoku} id={this.state.previewID} restore={(sudoku) => this.restore(sudoku)} />
-    </View>)
-    : null;
+    const progressPreview = this.state.preview
+      ? (<View style={{height: '100%', width: Util.deviceWidth(), backgroundColor: '#282956', position: 'absolute', top: 0, right: 20}}>
+        <SavedProgressPreview prefilledArr={this.props.prefilledArr} closePreview={() => this.closePreview()} sudoku={this.state.previewSudoku} id={this.state.previewID} restore={(sudoku) => this.restore(sudoku)} />
+      </View>)
+      : null
 
-    const modal = this.state.modal? (
-      <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 999, justifyContent:'center',alignItems: 'center'}}>
-        <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 99, backgroundColor: '#000', opacity: 0.6}}></View>
-        <MessageModal 
-          confirmFunction={() => this.confirmFunction()} 
+    const modal = this.state.modal ? (
+      <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 999, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{width: '100%', height: '100%', position: 'absolute', zIndex: 99, backgroundColor: '#000', opacity: 0.6}} />
+        <MessageModal
+          confirmFunction={() => this.confirmFunction()}
           cancelFunction={() => this.cancel()}
           message={'Delete?'}
-          />
+        />
       </View>
-    ) : null;
+    ) : null
 
-    const progress = !this.state.preview ?
-    (
-      <View style={style.wrapper}>
-      { this.state.fontLoaded ? (
-        <Text style={style.savedProgressTitle} >Time Bank</Text>
-      ) : null }
-      {progressCards}
-      {modal}
-      </View>
-    )
-    :(<View style={style.wrapper}>{progressPreview}</View>);
+    const progress = !this.state.preview
+      ? (
+        <View style={style.wrapper}>
+          { this.state.fontLoaded ? (
+            <Text style={style.savedProgressTitle} >Time Bank</Text>
+          ) : null }
+          {progressCards}
+          {modal}
+        </View>
+      )
+      : (<View style={style.wrapper}>{progressPreview}</View>)
 
     return (
       <View style={style.wrapper} >
         {progress}
       </View>
-    );
+    )
   }
 }

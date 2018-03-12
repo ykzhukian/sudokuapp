@@ -1,18 +1,18 @@
-'use strict';
+'use strict'
 
-import { Font } from 'expo';
+import { Font } from 'expo'
 
-var React = require('react-native');
+var React = require('react-native')
 
 var {
-  StyleSheet,
-} = React;
+  StyleSheet
+} = React
 
-var colors = require('./colors');
+var colors = require('./colors')
 
 module.exports = StyleSheet.create({
 
-	selected: {
+  selected: {
     backgroundColor: colors.colors.selected
   },
   selectedShadow: {
@@ -68,14 +68,14 @@ module.exports = StyleSheet.create({
     fontFamily: 'Dosis',
     color: colors.colors.white
   },
-  lightCell: { 
-    backgroundColor: colors.colors.lightButton,
+  lightCell: {
+    backgroundColor: colors.colors.lightButton
   },
-  lightCellShadow: { 
-    backgroundColor: colors.colors.lightButtonShadow,
+  lightCellShadow: {
+    backgroundColor: colors.colors.lightButtonShadow
   },
   fade: {
     opacity: 0.4
   }
 
-});
+})

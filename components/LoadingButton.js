@@ -1,25 +1,24 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing } from 'react-native';
-import { Font } from 'expo';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Easing } from 'react-native'
+import { Font } from 'expo'
 
-const style = require('./styles/Loading');
+const style = require('./styles/Loading')
 
-import Util from '../helpers/Util';
+import Util from '../helpers/Util'
 
 export default class LoadingButton extends Component {
-
-	constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
       fontLoaded: false
     }
 
-    this.animateValue = new Animated.Value(0);
+    this.animateValue = new Animated.Value(0)
   }
 
-  animate() {
-    this.animateValue.setValue(0);
+  animate () {
+    this.animateValue.setValue(0)
     Animated.timing(
       this.animateValue,
       {
@@ -31,20 +30,19 @@ export default class LoadingButton extends Component {
     ).start()
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     await Font.loadAsync({
       'Dosis': require('../assets/fonts/Dosis-ExtraBold.ttf'),
-      'Dosis-Light': require('../assets/fonts/Dosis-Bold.ttf'),
-    });
-    //Setting the state to true when font is loaded.
-    this.setState({ fontLoaded: true });
+      'Dosis-Light': require('../assets/fonts/Dosis-Bold.ttf')
+    })
+    // Setting the state to true when font is loaded.
+    this.setState({ fontLoaded: true })
 
-    this.animate();
-    setInterval(() => this.animate(), 100 * 7);
+    this.animate()
+    setInterval(() => this.animate(), 100 * 7)
   }
 
-  render() {
-
+  render () {
     const marginTop = this.animateValue.interpolate({
       inputRange: [0, 0.5, 1],
       outputRange: [0, 4, 0]
@@ -54,18 +52,12 @@ export default class LoadingButton extends Component {
       <View style={style.buttonWrapper} >
         <Animated.View style={[style.button, {marginTop}]} >
           {this.state.fontLoaded ? (<Text style={style.buttonText} >{this.props.value}</Text>) : null}
-          <View style={style.buttonReflection} ></View>
-          <View style={style.buttonReflectionRound} ></View>
-          <View style={style.buttonReflectionLarge} ></View>
+          <View style={style.buttonReflection} />
+          <View style={style.buttonReflectionRound} />
+          <View style={style.buttonReflectionLarge} />
         </Animated.View>
-        <View style={style.buttonShadow} ></View>
+        <View style={style.buttonShadow} />
       </View>
-    );
+    )
   }
 }
-
-
-
-
-
-

@@ -1,19 +1,19 @@
-'use strict';
+'use strict'
 
-var React = require('react-native');
+var React = require('react-native')
 
 var {
-  StyleSheet,
-} = React;
+  StyleSheet
+} = React
 
-var colors = require('./colors');
+var colors = require('./colors')
 
 module.exports = StyleSheet.create({
 
-	container: {
+  container: {
     width: '100%',
     height: '100%',
-    alignItems: 'center',
+    alignItems: 'center'
   },
 
   wrapper: {
@@ -35,12 +35,12 @@ module.exports = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     zIndex: 3,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   loadingText: {
     color: colors.colors.white,
-		fontSize: 24
+    fontSize: 24
   },
 
   active: {
@@ -48,40 +48,40 @@ module.exports = StyleSheet.create({
   },
 
   board: {
-		backgroundColor: colors.colors.board,
-		height: '108%',
-		width: '106%',
-		top: '-4%',
-		start: '-3%',
-		position: 'absolute',
-		borderRadius: 8,
-		zIndex: 2
-	},
+    backgroundColor: colors.colors.board,
+    height: '108%',
+    width: '106%',
+    top: '-4%',
+    start: '-3%',
+    position: 'absolute',
+    borderRadius: 8,
+    zIndex: 2
+  },
 
-	boardShadow: {
-		backgroundColor: colors.colors.boardShadow,
-		height: '104%',
-		width: '106%',
-		top: 20,
-		start: '-3%',
-		position: 'absolute',
-		borderRadius: 8,
-	},
+  boardShadow: {
+    backgroundColor: colors.colors.boardShadow,
+    height: '104%',
+    width: '106%',
+    top: 20,
+    start: '-3%',
+    position: 'absolute',
+    borderRadius: 8
+  },
 
-	toolBar: {
-		paddingTop: 20,
-		flex: 1, 
-		flexDirection: 'row', 
-		maxHeight: 100,
-		justifyContent: 'space-between',
-	},
+  toolBar: {
+    paddingTop: 20,
+    flex: 1,
+    flexDirection: 'row',
+    maxHeight: 100,
+    justifyContent: 'space-between'
+  },
 
-	title: {
-		fontFamily: 'Dosis',
-		fontSize: 28,
-		height: 50,
-		lineHeight: 50,
-		color: colors.colors.lightButton
-	}
+  title: {
+    fontFamily: 'Dosis',
+    fontSize: 28,
+    height: 50,
+    lineHeight: 50,
+    color: colors.colors.lightButton
+  }
 
-});
+})

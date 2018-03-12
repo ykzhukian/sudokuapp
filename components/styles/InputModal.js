@@ -1,22 +1,22 @@
-'use strict';
+'use strict'
 
-import { Font } from 'expo';
+import { Font } from 'expo'
 
-var React = require('react-native');
+var React = require('react-native')
 
 var {
-  StyleSheet,
-} = React;
+  StyleSheet
+} = React
 
-var colors = require('./colors');
+var colors = require('./colors')
 
 module.exports = StyleSheet.create({
 
-	container: {
+  container: {
     alignItems: 'center',
     position: 'absolute',
     width: '100%',
-    zIndex: 999,
+    zIndex: 999
   },
 
   wrapper: {
@@ -41,7 +41,7 @@ module.exports = StyleSheet.create({
   	alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    zIndex: 9,
+    zIndex: 9
   },
 
   buttonReflection: {
@@ -63,7 +63,7 @@ module.exports = StyleSheet.create({
     top: 2,
     backgroundColor: colors.colors.white,
     marginRight: 2,
-    opacity: 0.1,
+    opacity: 0.1
   },
 
   buttonReflectionLarge: {
@@ -75,13 +75,13 @@ module.exports = StyleSheet.create({
     top: 2,
     backgroundColor: colors.colors.white,
     marginRight: 8,
-    opacity: 0.1,
+    opacity: 0.1
   },
 
   buttonPressed: {
     bottom: -5
   },
-  
+
   buttonText: {
     fontSize: 40,
     color: '#fff',
@@ -89,7 +89,7 @@ module.exports = StyleSheet.create({
   },
 
   buttonShadow: {
-		width: '100%',
+    width: '100%',
   	backgroundColor: colors.colors.darkButtonShadow,
   	aspectRatio: 1,
   	borderRadius: 4,
@@ -98,17 +98,17 @@ module.exports = StyleSheet.create({
   },
 
   lightButton: {
-  	backgroundColor: colors.colors.lightButton,
+  	backgroundColor: colors.colors.lightButton
   },
 
   lightButtonShadow: {
-  	backgroundColor: colors.colors.lightButtonShadow,
+  	backgroundColor: colors.colors.lightButtonShadow
   },
 
   buttonDisabled: {
-		opacity: 0.4
+    opacity: 0.4
   },
-  
+
   selected: {
     backgroundColor: colors.colors.selected
   },
@@ -122,12 +122,12 @@ module.exports = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     zIndex: 3,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   loadingText: {
     color: colors.colors.white,
     fontSize: 24
-  },
+  }
 
-});
+})

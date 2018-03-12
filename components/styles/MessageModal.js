@@ -1,14 +1,14 @@
-'use strict';
+'use strict'
 
-import { Font } from 'expo';
+import { Font } from 'expo'
 
-var React = require('react-native');
+var React = require('react-native')
 
 var {
-  StyleSheet,
-} = React;
+  StyleSheet
+} = React
 
-var colors = require('./colors');
+var colors = require('./colors')
 
 module.exports = StyleSheet.create({
 
@@ -33,7 +33,7 @@ module.exports = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+    marginTop: 20
   },
 
   notificationModal: {
@@ -45,7 +45,7 @@ module.exports = StyleSheet.create({
   buttonWrapper: {
     width: '48%',
     position: 'relative',
-    height: 50,
+    height: 50
   },
 
   button: {
@@ -55,7 +55,7 @@ module.exports = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 1
   },
 
   buttonShadow: {
@@ -64,7 +64,7 @@ module.exports = StyleSheet.create({
     bottom: -5,
     width: '100%',
     height: 20,
-    borderRadius: 4,
+    borderRadius: 4
   },
 
   reflection: {
@@ -76,7 +76,7 @@ module.exports = StyleSheet.create({
     borderRadius: 3,
     position: 'absolute',
     left: '2%',
-    top: 2,
+    top: 2
   },
 
   reflectionLarge: {
@@ -88,7 +88,7 @@ module.exports = StyleSheet.create({
     position: 'absolute',
     right: '12%',
     top: 2,
-    borderRadius: 3,
+    borderRadius: 3
   },
 
   reflectionRound: {
@@ -100,7 +100,7 @@ module.exports = StyleSheet.create({
     position: 'absolute',
     right: '2%',
     top: 2,
-    borderRadius: 3,
+    borderRadius: 3
   },
 
   cancel: {
@@ -111,4 +111,4 @@ module.exports = StyleSheet.create({
     backgroundColor: colors.colors.errorShadow
   }
 
-});
+})
