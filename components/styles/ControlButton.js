@@ -17,8 +17,8 @@ module.exports = StyleSheet.create({
   },
 
   controlWrapper: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
@@ -26,8 +26,8 @@ module.exports = StyleSheet.create({
   },
 
   controlImage: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     zIndex: 2,
     position: 'absolute',
     start: 0,

@@ -5,16 +5,14 @@
   "devDependencies": {
     "jest-expo": "25.0.0",
     "react-native-scripts": "1.10.0",
-    "react-test-renderer": "16.2.0",
-    "standard": "^11.0.0"
+    "react-test-renderer": "16.2.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "standard && node my-tests.js"
+    "ios": "react-native-scripts ios"
   },
   "jest": {
     "preset": "jest-expo"
@@ -23,11 +21,10 @@
     "expo": "^25.0.0",
     "jquery": "^3.3.1",
     "react": "16.2.0",
-    "react-native": "0.51.0",
+    "react-native": "0.52.0",
     "react-native-modalbox": "^1.4.2",
     "react-native-swiper": "^1.5.13",
-    "react-native-view-shot": "^2.3.0",
-    "standard": "*"
+    "react-native-view-shot": "^2.3.0"
   },
   "rnpm": {
     "assets": [

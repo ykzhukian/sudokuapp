@@ -16,7 +16,7 @@ module.exports = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.colors.lightButton,
     borderRadius: 4,
-    padding: 20,
+    padding: 15,
     backgroundColor: colors.colors.darkButtonShadow,
     position: 'absolute',
     zIndex: 999

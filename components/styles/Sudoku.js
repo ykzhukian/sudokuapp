@@ -72,7 +72,7 @@ module.exports = StyleSheet.create({
     paddingTop: 20,
     flex: 1,
     flexDirection: 'row',
-    maxHeight: 100,
+    maxHeight: 90,
     justifyContent: 'space-between'
   },
 

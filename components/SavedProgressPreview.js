@@ -52,9 +52,9 @@ export default class SavedProgressPreview extends Component {
     return (
       <View style={[style.previewWrapper, {width: Util.deviceWidth()}]} >
         {this.state.fontLoaded
-          ? (<Text style={{fontFamily: 'Dosis', fontSize: 24, color: 'white', textAlign: 'center', marginTop: 30}}>{time}</Text>) : null
+          ? (<Text style={{fontFamily: 'Dosis', fontSize: 24, color: 'white', textAlign: 'center', marginTop: 20}}>{time}</Text>) : null
         }
-        <View style={{position: 'relative', marginTop: 40}}>
+        <View style={{position: 'relative', marginTop: 20}}>
           <View style={[sudokuStyle.wrapper, {width: Util.deviceWidth(), height: Util.deviceWidth()}]}>
             {sudokuBlock}
             <View style={sudokuStyle.board} />

@@ -37,7 +37,7 @@ module.exports = StyleSheet.create({
     borderRadius: 4,
     position: 'relative',
     zIndex: 1,
-    height: 48,
+    height: 38,
     flexDirection: 'column',
     justifyContent: 'center'
   },

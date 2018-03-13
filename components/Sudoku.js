@@ -498,12 +498,12 @@ export default class Sudoku extends Component {
       >
         <View style={style.container} >
           <View style={[style.toolBar, {width: Util.deviceWidth()}]}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 90}}>
               <ControlButton active={true} buttonFunction={() => this.cancelGame()} icon={require('../assets/img/close.png')} />
               <ControlButton active={true} buttonFunction={() => this.clearModal()} icon={require('../assets/img/clear.png')} />
             </View>
 
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 110}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: 90}}>
               <ControlButton active={this.state.selected.row || this.state.selected.row === 0} buttonFunction={() => this._openRewarded()} icon={require('../assets/img/hint.png')} />
               <ControlButton active={true} buttonFunction={() => this.save()} icon={require('../assets/img/save.png')} />
             </View>
