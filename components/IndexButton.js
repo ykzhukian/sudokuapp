@@ -46,7 +46,7 @@ export default class InputButton extends Component {
             <View style={style.buttonReflectionLarge} />
             <View style={style.buttonReflection} />
           </View>
-          <View style={[
+          <View style={[ 
             style.buttonShadow,
             (this.props.color === 'yellow' ? style.yellowShadow : []),
             (this.props.color === 'orange' ? style.orangeShadow : []),
