@@ -2,11 +2,13 @@
 
 [npm start](#npm-start)
 
+<p>
   <img src="https://github.com/ykzhukian/sudokuapp/blob/master/assets/img/home-screen.png" width="250"/>
-#### Home Screen
+	<div>Home Screen</div>
   <img src="https://github.com/ykzhukian/sudokuapp/blob/master/assets/img/playing.png" width="250"/>
-#### Playing Screen
+  <div>Playing Screen</div>
   <img src="https://github.com/ykzhukian/sudokuapp/blob/master/assets/img/restore-list.png" width="250"/>
-#### Restore List
+  <div>Restore List</div>
   <img src="https://github.com/ykzhukian/sudokuapp/blob/master/assets/img/restore.png" width="250"/>
-#### Restore Preview
+  <div>Restore Preview</div>
+</p>
